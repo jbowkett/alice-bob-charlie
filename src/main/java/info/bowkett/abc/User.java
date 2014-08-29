@@ -1,5 +1,7 @@
 package info.bowkett.abc;
 
+import info.bowkett.abc.commands.PostCommand;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -8,7 +10,7 @@ import java.util.List;
  */
 public class User {
 
-  private final List<Post> posts = new LinkedList<Post>();
+  private final List<PostCommand> posts = new LinkedList<PostCommand>();
 
   private final String name;
 
@@ -20,11 +22,11 @@ public class User {
     return name;
   }
 
-  public List<Post> posts() {
+  public List<PostCommand> posts() {
     return posts;
   }
 
-  public void addPost(Post post) {
+  public void addPost(PostCommand post) {
     posts.add(post);
   }
 }

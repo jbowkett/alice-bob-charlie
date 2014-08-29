@@ -1,5 +1,8 @@
 package info.bowkett.abc;
 
+import info.bowkett.abc.commands.Command;
+import info.bowkett.abc.commands.PostCommand;
+
 /**
  * Created by jbowkett on 27/08/2014.
  */
@@ -15,7 +18,7 @@ public class CommandParser {
 
     final String userName = parts[0].trim();
     final User user = userRepo.get(userName);
-    final Post post = new Post(user, parts[1].trim());
+    final PostCommand post = new PostCommand(user, parts[1].trim());
     user.addPost(post);
     return post;
   }

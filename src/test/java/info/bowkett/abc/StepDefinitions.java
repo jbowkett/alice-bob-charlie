@@ -2,6 +2,7 @@ package info.bowkett.abc;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import info.bowkett.abc.commands.PostCommand;
 
 import java.util.List;
 import java.util.stream.Stream;
@@ -32,15 +33,15 @@ public class StepDefinitions {
   @Then("^\"(.*?)\" timeline contains the post \"(.*?)\"$")
   public void timeline_contains_the_post(String posessive, String post) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final List<Post> posts = userRepo.get(userName).posts();
-    final Stream<String> postText = posts.stream().map(Post::getText);
+    final List<PostCommand> posts = userRepo.get(userName).posts();
+    final Stream<String> postText = posts.stream().map(PostCommand::getText);
     assertTrue(postText.anyMatch(p -> p.equals(post)));
   }
 
   @Then("^\"(.*?)\" timeline contains (\\d+) posts$")
    public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final List<Post> posts = userRepo.get(userName).posts();
+    final List<PostCommand> posts = userRepo.get(userName).posts();
     assertEquals(expectedCount, posts.size());
    }
 
