@@ -1,12 +1,13 @@
 package info.bowkett.abc;
 
-import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import sun.security.util.PendingException;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.*;
 
 
 /**
@@ -14,9 +15,40 @@ import static org.junit.Assert.assertThat;
  */
 public class StepDefinitions {
 
+  private final CommandParser commandParser;
+  private UserRepository userRepo;
+
+  public StepDefinitions() {
+    this.userRepo = new InMemoryUserRepository();
+    commandParser = new CommandParser(userRepo);
+  }
+
   @When("^\"(.*?)\" posts \"(.*?)\"$")
-  public void posts(String arg1, String arg2) throws Throwable {
-    // Write code here that turns the phrase above into concrete actions
-    throw new PendingException();
+  public void posts(String userName, String message) throws Throwable {
+    final String post = post(userName, message);
+    commandParser.submit(post);
+  }
+
+  @Then("^\"(.*?)\" timeline contains the post \"(.*?)\"$")
+  public void timeline_contains_the_post(String posessive, String post) throws Throwable {
+    final String userName = stripPosessive(posessive);
+    final List<Post> posts = userRepo.get(userName).posts();
+    final Stream<String> postText = posts.stream().map(Post::getText);
+    assertTrue(postText.anyMatch(p -> p.equals(post)));
+  }
+
+  @Then("^\"(.*?)\" timeline contains (\\d+) posts$")
+   public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
+    final String userName = stripPosessive(posessive);
+    final List<Post> posts = userRepo.get(userName).posts();
+    assertEquals(expectedCount, posts.size());
+   }
+
+  public String stripPosessive(String posessive) {
+    return posessive.replaceAll("'s$", "");
+  }
+
+  private String post(String userName, String message) {
+    return userName + " -> " + message;
   }
 }

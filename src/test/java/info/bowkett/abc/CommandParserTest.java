@@ -1,0 +1,51 @@
+package info.bowkett.abc;
+
+import org.junit.Test;
+import org.junit.Before;
+import org.junit.After;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+/**
+ * Shell Tester.
+ *
+ * @author <Authors name>
+ * @version 1.0
+ * @since <pre>Aug 29, 2014</pre>
+ */
+public class CommandParserTest {
+
+  private CommandParser commandParser;
+
+  @Before
+  public void before() throws Exception {
+    commandParser = new CommandParser(new InMemoryUserRepository());
+  }
+
+  @After
+  public void after() throws Exception {
+  }
+
+  /**
+   * Method: submit(String shellCommand)
+   */
+  @Test
+  public void testSubmitValidPostCommand() throws Exception {
+    Command com = commandParser.submit("Alice -> I love the weather today");
+    assertTrue (com instanceof Post);
+  }
+
+  @Test
+  public void testSubmitValidPostCommandContainsUserName() throws Exception {
+    Command com = commandParser.submit("Alice -> I love the weather today");
+    assertEquals("Alice", com.getUser().getName());
+  }
+
+  @Test
+  public void testSubmitSeveralPostCommandsForTheSameUserNameAreAddedToTheSameUser() throws Exception {
+    final Command firstPost = commandParser.submit("Alice -> I love the weather today");
+    final Command secondPost = commandParser.submit("Alice -> I think I'll go to the beach");
+    assertTrue(firstPost.getUser() == secondPost.getUser());
+  }
+}
