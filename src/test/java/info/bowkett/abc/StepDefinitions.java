@@ -18,12 +18,14 @@ public class StepDefinitions {
 
   private final CommandParser commandParser;
   private final Shell shell;
+  private final TimelineRepository timelineRepo;
   private UserRepository userRepo;
 
   public StepDefinitions() {
     this.userRepo = new InMemoryUserRepository();
     commandParser = new CommandParser();
-    shell = new Shell(commandParser, userRepo);
+    timelineRepo = new InMemoryTimelineRepository();
+    shell = new Shell(commandParser, userRepo, timelineRepo);
   }
 
   @When("^\"(.*?)\" posts \"(.*?)\"$")
@@ -35,14 +37,16 @@ public class StepDefinitions {
   @Then("^\"(.*?)\" timeline contains the post \"(.*?)\"$")
   public void timeline_contains_the_post(String posessive, String post) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final List<Post> posts = userRepo.get(userName).posts();
+    final User user = userRepo.get(userName);
+    final List<Post> posts = timelineRepo.get(user);
     assertTrue(posts.stream().anyMatch(p -> p.getText().equals(post)));
   }
 
   @Then("^\"(.*?)\" timeline contains (\\d+) posts$")
    public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final List<Post> posts = userRepo.get(userName).posts();
+    final User user = userRepo.get(userName);
+    final List<Post> posts = timelineRepo.get(user);
     assertEquals(expectedCount, posts.size());
    }
 

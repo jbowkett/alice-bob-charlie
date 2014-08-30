@@ -10,8 +10,6 @@ import java.util.List;
  */
 public class User {
 
-  private final List<Post> posts = new LinkedList<>();
-
   private final String name;
 
   public User(String name) {
@@ -22,11 +20,4 @@ public class User {
     return name;
   }
 
-  public List<Post> posts() {
-    return posts;
-  }
-
-  public void addPost(Post post) {
-    posts.add(post);
-  }
 }

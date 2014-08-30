@@ -9,10 +9,12 @@ import info.bowkett.abc.commands.PostCommand;
 public class Shell {
   private final CommandParser parser;
   private UserRepository userRepo;
+  private final TimelineRepository timelineRepo;
 
-  public Shell(CommandParser parser, UserRepository userRepo) {
+  public Shell(CommandParser parser, UserRepository userRepo, TimelineRepository timelineRepo) {
     this.parser = parser;
     this.userRepo = userRepo;
+    this.timelineRepo = timelineRepo;
   }
 
 
@@ -21,7 +23,7 @@ public class Shell {
     final User user = userRepo.get(command.getUserName());
     if (command instanceof PostCommand){
       final String text = ((PostCommand) command).getText();
-      user.addPost(new Post(text));
+      timelineRepo.get(user).add(new Post(text));
     }
   }
 }

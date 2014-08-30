@@ -19,7 +19,7 @@ public class ShellTest {
 
   @Before
   public void before() throws Exception {
-    shell = new Shell(new CommandParser(), new InMemoryUserRepository());
+    shell = new Shell(new CommandParser(), new InMemoryUserRepository(), new InMemoryTimelineRepository());
   }
 
   @After
