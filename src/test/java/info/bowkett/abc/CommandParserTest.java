@@ -2,6 +2,7 @@ package info.bowkett.abc;
 
 import info.bowkett.abc.commands.Command;
 import info.bowkett.abc.commands.PostCommand;
+import info.bowkett.abc.commands.ViewCommand;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -34,13 +35,25 @@ public class CommandParserTest {
    */
   @Test
   public void testSubmitValidPostCommand() throws Exception {
-    Command com = commandParser.submit("Alice -> I love the weather today");
+    final Command com = commandParser.submit("Alice -> I love the weather today");
     assertTrue (com instanceof PostCommand);
   }
 
   @Test
   public void testSubmitValidPostCommandContainsUserName() throws Exception {
-    Command com = commandParser.submit("Alice -> I love the weather today");
+    final Command com = commandParser.submit("Alice -> I love the weather today");
     assertEquals("Alice", com.getUserName());
+  }
+
+  @Test
+  public void testSubmitValidPostCommandContainsPostText() throws Exception {
+    final PostCommand com = (PostCommand) commandParser.submit("Alice -> I love the weather today");
+    assertEquals("I love the weather today", com.getText());
+  }
+
+  @Test
+  public void testSubmitUserCommandContainsPostText() throws Exception {
+    final Command com = commandParser.submit("Alice");
+    assertTrue(com instanceof ViewCommand);
   }
 }
