@@ -50,7 +50,7 @@ public class StepDefinitions {
     assertEquals(expectedCount, posts.size());
    }
 
-  public String stripPosessive(String posessive) {
+  String stripPosessive(String posessive) {
     return posessive.replaceAll("'s$", "");
   }
 
