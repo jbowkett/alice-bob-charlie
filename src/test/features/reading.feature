@@ -9,10 +9,9 @@ Feature:
   Good game though. (1 minute ago)
   Damn! We lost! (2 minutes ago)
 
-  @wip
-  Scenario: Viewing all of the timestamped posts by one user
+  Scenario: Viewing all of the posts by one user
     Given "Alice" posts "I love the weather today"
     And   "Bob" posts "Damn! We lost!"
     And   "Bob" posts "Good game though."
     When  reading the posts by "Alice"
-    Then  I see "I love the weather today" with a timestamp
+    Then  I see "I love the weather today"

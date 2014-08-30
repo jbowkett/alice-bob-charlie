@@ -2,13 +2,13 @@ package info.bowkett.abc;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import info.bowkett.abc.commands.PostCommand;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.*;
 
 
 /**
@@ -19,13 +19,17 @@ public class StepDefinitions {
   private final CommandParser commandParser;
   private final Shell shell;
   private final TimelineRepository timelineRepo;
+  private final Console console;
+  private final Console consoleSpy;
   private UserRepository userRepo;
 
   public StepDefinitions() {
     this.userRepo = new InMemoryUserRepository();
     commandParser = new CommandParser();
     timelineRepo = new InMemoryTimelineRepository();
-    shell = new Shell(commandParser, userRepo, timelineRepo);
+    console = new Console(new Timeformat());
+    consoleSpy = spy(console);
+    shell = new Shell(commandParser, userRepo, timelineRepo, consoleSpy);
   }
 
   @When("^\"(.*?)\" posts \"(.*?)\"$")
@@ -43,12 +47,22 @@ public class StepDefinitions {
   }
 
   @Then("^\"(.*?)\" timeline contains (\\d+) posts$")
-   public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
+  public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
     final String userName = stripPosessive(posessive);
     final User user = userRepo.get(userName);
     final List<Post> posts = timelineRepo.get(user);
     assertEquals(expectedCount, posts.size());
-   }
+  }
+
+  @When("^reading the posts by \"(.*?)\"$")
+  public void reading_the_posts_by(String userName) throws Throwable {
+    shell.submit(userName);
+  }
+
+  @Then("^I see \"(.*?)\"$")
+  public void i_see(String post) throws Throwable {
+    verify(consoleSpy).print(post);
+  }
 
   String stripPosessive(String posessive) {
     return posessive.replaceAll("'s$", "");
