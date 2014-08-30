@@ -40,6 +40,12 @@ public class CommandParserTest {
   }
 
   @Test
+  public void testSubmitUserCommandYieldsAViewCommand() throws Exception {
+    final Command com = commandParser.submit("Alice");
+    assertTrue(com instanceof ViewCommand);
+  }
+
+  @Test
   public void testSubmitValidPostCommandContainsUserName() throws Exception {
     final Command com = commandParser.submit("Alice -> I love the weather today");
     assertEquals("Alice", com.getUserName());
@@ -49,11 +55,5 @@ public class CommandParserTest {
   public void testSubmitValidPostCommandContainsPostText() throws Exception {
     final PostCommand com = (PostCommand) commandParser.submit("Alice -> I love the weather today");
     assertEquals("I love the weather today", com.getText());
-  }
-
-  @Test
-  public void testSubmitUserCommandContainsPostText() throws Exception {
-    final Command com = commandParser.submit("Alice");
-    assertTrue(com instanceof ViewCommand);
   }
 }
