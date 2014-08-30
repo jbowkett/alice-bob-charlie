@@ -24,7 +24,7 @@ public class TimeformatTest {
   @Test
   public void testTenSecondsAgo() throws Exception {
     final String timeString = format.forDiff(1_000_000, 1_010_000);
-    assertEquals("0 minutes ago", timeString);
+    assertEquals("10 seconds ago", timeString);
   }
 
   @Test
