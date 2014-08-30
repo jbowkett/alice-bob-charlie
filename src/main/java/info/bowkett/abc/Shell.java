@@ -21,7 +21,7 @@ public class Shell {
     final User user = userRepo.get(command.getUserName());
     if (command instanceof PostCommand){
       final String text = ((PostCommand) command).getText();
-      user.addPost(text);
+      user.addPost(new Post(text));
     }
   }
 }

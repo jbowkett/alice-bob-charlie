@@ -35,14 +35,14 @@ public class StepDefinitions {
   @Then("^\"(.*?)\" timeline contains the post \"(.*?)\"$")
   public void timeline_contains_the_post(String posessive, String post) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final List<String> posts = userRepo.get(userName).posts();
-    assertTrue(posts.stream().anyMatch(p -> p.equals(post)));
+    final List<Post> posts = userRepo.get(userName).posts();
+    assertTrue(posts.stream().anyMatch(p -> p.getText().equals(post)));
   }
 
   @Then("^\"(.*?)\" timeline contains (\\d+) posts$")
    public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final List<String> posts = userRepo.get(userName).posts();
+    final List<Post> posts = userRepo.get(userName).posts();
     assertEquals(expectedCount, posts.size());
    }
 
