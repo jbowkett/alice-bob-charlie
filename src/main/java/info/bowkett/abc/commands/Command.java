@@ -7,5 +7,5 @@ import info.bowkett.abc.User;
  * Created by jbowkett on 29/08/2014.
  */
 public interface Command {
-  public User getUser();
+  public String getUserName();
 }

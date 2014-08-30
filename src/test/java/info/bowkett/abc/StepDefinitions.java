@@ -17,31 +17,32 @@ import static org.junit.Assert.*;
 public class StepDefinitions {
 
   private final CommandParser commandParser;
+  private final Shell shell;
   private UserRepository userRepo;
 
   public StepDefinitions() {
     this.userRepo = new InMemoryUserRepository();
-    commandParser = new CommandParser(userRepo);
+    commandParser = new CommandParser();
+    shell = new Shell(commandParser, userRepo);
   }
 
   @When("^\"(.*?)\" posts \"(.*?)\"$")
   public void posts(String userName, String message) throws Throwable {
     final String post = post(userName, message);
-    commandParser.submit(post);
+    shell.submit(post);
   }
 
   @Then("^\"(.*?)\" timeline contains the post \"(.*?)\"$")
   public void timeline_contains_the_post(String posessive, String post) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final List<PostCommand> posts = userRepo.get(userName).posts();
-    final Stream<String> postText = posts.stream().map(PostCommand::getText);
-    assertTrue(postText.anyMatch(p -> p.equals(post)));
+    final List<String> posts = userRepo.get(userName).posts();
+    assertTrue(posts.stream().anyMatch(p -> p.equals(post)));
   }
 
   @Then("^\"(.*?)\" timeline contains (\\d+) posts$")
    public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final List<PostCommand> posts = userRepo.get(userName).posts();
+    final List<String> posts = userRepo.get(userName).posts();
     assertEquals(expectedCount, posts.size());
    }
 

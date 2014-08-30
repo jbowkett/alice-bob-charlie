@@ -22,7 +22,7 @@ public class CommandParserTest {
 
   @Before
   public void before() throws Exception {
-    commandParser = new CommandParser(new InMemoryUserRepository());
+    commandParser = new CommandParser();
   }
 
   @After
@@ -41,13 +41,6 @@ public class CommandParserTest {
   @Test
   public void testSubmitValidPostCommandContainsUserName() throws Exception {
     Command com = commandParser.submit("Alice -> I love the weather today");
-    assertEquals("Alice", com.getUser().getName());
-  }
-
-  @Test
-  public void testSubmitSeveralPostCommandsForTheSameUserNameAreAddedToTheSameUser() throws Exception {
-    final Command firstPost = commandParser.submit("Alice -> I love the weather today");
-    final Command secondPost = commandParser.submit("Alice -> I think I'll go to the beach");
-    assertTrue(firstPost.getUser() == secondPost.getUser());
+    assertEquals("Alice", com.getUserName());
   }
 }

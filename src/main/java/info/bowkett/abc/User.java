@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class User {
 
-  private final List<PostCommand> posts = new LinkedList<PostCommand>();
+  private final List<String> posts = new LinkedList<>();
 
   private final String name;
 
@@ -22,11 +22,11 @@ public class User {
     return name;
   }
 
-  public List<PostCommand> posts() {
+  public List<String> posts() {
     return posts;
   }
 
-  public void addPost(PostCommand post) {
+  public void addPost(String post) {
     posts.add(post);
   }
 }

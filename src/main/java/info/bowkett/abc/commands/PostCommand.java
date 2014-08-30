@@ -6,10 +6,10 @@ import info.bowkett.abc.User;
  * Created by jbowkett on 29/08/2014.
  */
 public class PostCommand implements Command {
-  private final User user;
+  private final String userName;
   private final String postText;
-  public PostCommand(User user, String postText) {
-    this.user = user;
+  public PostCommand(String user, String postText) {
+    this.userName = user;
     this.postText = postText;
   }
 
@@ -17,7 +17,7 @@ public class PostCommand implements Command {
     return postText;
   }
 
-  public User getUser() {
-    return user;
+  public String getUserName() {
+    return userName;
   }
 }
