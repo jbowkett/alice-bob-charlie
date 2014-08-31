@@ -4,6 +4,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 import java.util.List;
+import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -21,15 +22,17 @@ public class StepDefinitions {
   private final TimelineRepository timelineRepo;
   private final Console console;
   private final Console consoleSpy;
+  private final FollowRepository followRepo;
   private UserRepository userRepo;
 
   public StepDefinitions() {
-    this.userRepo = new InMemoryUserRepository();
     commandParser = new CommandParser();
+    this.userRepo = new InMemoryUserRepository();
     timelineRepo = new InMemoryTimelineRepository();
     console = new Console(new Timeformat());
     consoleSpy = spy(console);
-    shell = new Shell(commandParser, userRepo, timelineRepo, consoleSpy);
+    followRepo = new InMemoryFollowRepository();
+    shell = new Shell(commandParser, userRepo, timelineRepo, consoleSpy, followRepo);
   }
 
   @When("^\"(.*?)\" posts \"(.*?)\"$")
@@ -64,8 +67,27 @@ public class StepDefinitions {
     verify(consoleSpy).print(post);
   }
 
+  @When("^\"(.*?)\" follows \"(.*?)\"$")
+  public void follows(String userNameDoingFollowing, String userNameBeingFollowed) throws Throwable {
+    final String follow = follow(userNameDoingFollowing, userNameBeingFollowed);
+    shell.submit(follow);
+    final User userDoingFollowing = userRepo.get(userNameDoingFollowing);
+    final Set<User> usersBeingFollowed = followRepo.getSubscriptionsFor(userDoingFollowing);
+    assertTrue(usersBeingFollowed.stream().anyMatch(u -> u.getName().equals(userNameBeingFollowed)));
+  }
+
+  @Then("^\"(.*?)\" wall contains (\\d+) posts$")
+  public void wall_contains_posts(String userNamePosessive, int postCount) throws Throwable {
+    final String userName = stripPosessive(userNamePosessive);
+
+  }
+
   String stripPosessive(String posessive) {
     return posessive.replaceAll("'s$", "");
+  }
+
+  private String follow(String userDoingFollowing, String userBeingFollowed) {
+    return userDoingFollowing + " follows " + userBeingFollowed;
   }
 
   private String post(String userName, String message) {

@@ -23,7 +23,6 @@ Feature:
     And   "Bob" posts "Good game though."
     And   "Charlie" posts "I'm in New York today! Anyone want to have a coffee?"
 
-  @wip
 Scenario: A user can post and subscribe to another user's posts and view them
   integrated in order on their wall
     When  "Charlie" follows "Alice"

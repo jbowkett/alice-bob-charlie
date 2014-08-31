@@ -1,6 +1,7 @@
 package info.bowkett.abc;
 
 import info.bowkett.abc.commands.Command;
+import info.bowkett.abc.commands.FollowCommand;
 import info.bowkett.abc.commands.PostCommand;
 import info.bowkett.abc.commands.ViewCommand;
 
@@ -14,13 +15,16 @@ public class Shell {
   private UserRepository userRepo;
   private final TimelineRepository timelineRepo;
   private final Console console;
+  private final FollowRepository followRepo;
 
   public Shell(CommandParser parser, UserRepository userRepo,
-               TimelineRepository timelineRepo, Console console) {
+               TimelineRepository timelineRepo, Console console,
+               FollowRepository followRepo) {
     this.parser = parser;
     this.userRepo = userRepo;
     this.timelineRepo = timelineRepo;
     this.console = console;
+    this.followRepo = followRepo;
   }
 
 
@@ -38,6 +42,11 @@ public class Shell {
             .timestamp(post.getTimestamp())
             .println();
       });
+    }
+    else if (command instanceof FollowCommand){
+      final String toFollow = ((FollowCommand) command).getUserNameBeingFollowed();
+      final User userToFollow = userRepo.get(toFollow);
+      followRepo.addFollowing(user, userToFollow);
     }
   }
 }
