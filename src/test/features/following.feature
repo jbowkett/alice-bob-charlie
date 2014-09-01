@@ -34,9 +34,15 @@ Scenario: A user can post and subscribe to another user's posts and view them
     """
 
 
-  @wip
   Scenario: A user can post and subscribe to many users' posts and view them all
   integrated in order on their wall
     Given "Charlie" follows "Alice"
     When  "Charlie" follows "Bob"
-    Then  "Charlie's" wall contains 4 posts
+    And   "Charlie" views their wall
+    Then  I see the wall contains:
+    """
+    Charlie - I'm in New York today! Anyone want to have a coffee?
+    Bob - Good game though.
+    Bob - Damn! We lost!
+    Alice - I love the weather today
+    """

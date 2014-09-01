@@ -9,7 +9,7 @@ public class Post {
   private final User user;
 
   public Post(User user, String text){
-    this(user, text, System.currentTimeMillis());
+    this(user, text, System.nanoTime());
   }
 
   public Post(User user, String text, long timestamp) {

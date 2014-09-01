@@ -40,6 +40,7 @@ public class Shell {
       final Timeline timeline = timelineRepo.get(user);
       timeline.stream().forEach(post -> {
         console.print(post.getText())
+            .print(" ")
             .timestamp(post.getTimestamp())
             .println();
       });
@@ -60,6 +61,7 @@ public class Shell {
       wall.stream().forEach(post -> {
         console
             .print(post.getUser().getName() + " - "+post.getText())
+            .print(" ")
             .timestamp(post.getTimestamp())
             .println();
       });
