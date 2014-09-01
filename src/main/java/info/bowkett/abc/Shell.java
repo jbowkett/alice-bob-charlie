@@ -3,7 +3,6 @@ package info.bowkett.abc;
 import info.bowkett.abc.commands.*;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -53,7 +52,7 @@ public class Shell {
 
   private void doView(User user) {
     final Timeline timeline = timelineRepo.get(user);
-    timeline.forEach(post -> {
+    timeline.forEachRecentFirst(post -> {
       console.print(post.getText())
           .print(" ")
           .timestamp(post.getTimestamp())
@@ -72,8 +71,8 @@ public class Shell {
     final Timeline userTimeline = timelineRepo.get(user);
     final Stream<Timeline> timelinesForOthers = subscriptions.stream().map(u -> timelineRepo.get(u));
     final List<Post> wall = new ArrayList<>();
-    timelinesForOthers.forEach(timeline -> timeline.forEach(post -> wall.add(post)));
-    userTimeline.forEach(post -> wall.add(post));
+    timelinesForOthers.forEach(timeline -> timeline.forEachRecentFirst(post -> wall.add(post)));
+    userTimeline.forEachRecentFirst(post -> wall.add(post));
     wall.sort((o1, o2) -> (int)(o2.getTimestamp() - o1.getTimestamp()));
     wall.stream().forEach(post -> {
       console

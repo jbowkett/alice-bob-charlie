@@ -12,7 +12,7 @@ public class Timeline {
 
   private final List<Post> timeline = new LinkedList<>();
 
-  public void forEach(Consumer <Post> action){
+  public void forEachRecentFirst(Consumer<Post> action){
     timeline.stream().forEach(action);
   }
 
