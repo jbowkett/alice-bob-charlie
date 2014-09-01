@@ -3,7 +3,7 @@ Alice Bob Charlie
 
 Coding assignment submission by James Bowkett `james@bowkett.info`.
 
-Built using Java 8 and Gradle.
+Built using Java 8 and Gradle 2.0.
 
 Clone this repo, then run:
 
