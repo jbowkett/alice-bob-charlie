@@ -9,6 +9,8 @@ import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.domain.Wall;
 
+import java.util.Scanner;
+
 /**
  * Created by jbowkett on 29/08/2014.
  */
@@ -31,6 +33,19 @@ public class Shell {
     this.wallFactory = wallFactory;
   }
 
+  public void startShell() {
+    final Scanner in = new Scanner(System.in);
+    boolean quit = false;
+    console.print("> ");
+    while (!quit && in.hasNext()) {
+      final String currentLine = in.nextLine();
+      quit = currentLine.equalsIgnoreCase("quit");
+      if(!quit) {
+        submit(currentLine);
+        console.print("> ");
+      }
+    }
+  }
 
   public void submit(String shellCommand) {
     final Command command = parser.submit(shellCommand);
