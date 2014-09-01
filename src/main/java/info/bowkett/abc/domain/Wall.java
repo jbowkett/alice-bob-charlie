@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
+ * A collection of posts assembled together to form a user's wall.
  * Created by jbowkett on 01/09/2014.
  */
 public class Wall {

@@ -3,7 +3,6 @@ package info.bowkett.abc.shell;
 import info.bowkett.abc.commands.*;
 
 /**
- *
  * Parses commands as specified in the different feature files.
  * Follows the command pattern (Gamma et al.)
  *

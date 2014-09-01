@@ -1,6 +1,7 @@
 package info.bowkett.abc.domain;
 
 /**
+ * User domain model object
  * Created by jbowkett on 29/08/2014.
  */
 public class User {

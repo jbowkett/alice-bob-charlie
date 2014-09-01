@@ -8,6 +8,8 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 /**
+ * Domain model object for a set of users.  This is associated with a user that
+ * has created these subscriptions by issuing the follow command
  * Created by jbowkett on 01/09/2014.
  */
 public class Subscriptions {

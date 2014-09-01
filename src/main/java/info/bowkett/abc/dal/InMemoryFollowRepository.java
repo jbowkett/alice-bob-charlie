@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- *
+ * Following repository based on a concurrent map.
  *
  * Created by jbowkett on 31/08/2014.
  */

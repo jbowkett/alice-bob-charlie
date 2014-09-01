@@ -10,6 +10,8 @@ import info.bowkett.abc.domain.Wall;
 import java.util.stream.Stream;
 
 /**
+ * Assembles a user's wall by interleaving the posts by the people the user
+ * is following with the user's own posts
  * Created by jbowkett on 01/09/2014.
  */
 public class WallFactory {

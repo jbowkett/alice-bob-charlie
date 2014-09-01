@@ -12,6 +12,9 @@ import info.bowkett.abc.domain.Wall;
 import java.util.Scanner;
 
 /**
+ * Main user interaction shell.
+ * Reads user input, and delegates off to other components or prints the
+ * results of operations to the console.
  * Created by jbowkett on 29/08/2014.
  */
 public class Shell {
@@ -33,6 +36,10 @@ public class Shell {
     this.wallFactory = wallFactory;
   }
 
+  /**
+   * Main interactive command shell, responds to "quit" in addition to the
+   * requirements
+   */
   public void startShell() {
     final Scanner in = new Scanner(System.in);
     boolean quit = false;
@@ -47,6 +54,16 @@ public class Shell {
     }
   }
 
+  /**
+   * Parses the given string into a command instance decorated with all the
+   * details specified in shellCommand.
+   * The permissible commands are:
+   * <user> -> "A post"            = posting
+   * <user>                        = viewing the user's posts
+   * <user> wall                   = viewing the user's wall
+   * <user> follows <another user> = following another user
+   * @param shellCommand to parse
+   */
   public void submit(String shellCommand) {
     final Command command = parser.submit(shellCommand);
     final User user = userRepo.get(command.getUserName());

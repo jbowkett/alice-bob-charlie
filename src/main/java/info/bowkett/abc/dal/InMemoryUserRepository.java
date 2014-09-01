@@ -16,7 +16,7 @@ public class InMemoryUserRepository implements UserRepository {
   /**
    * Gets or creates the user with the specified name
    * @param userName
-   * @return
+   * @return the User (never null)
    */
   @Override
   public User get(String userName) {

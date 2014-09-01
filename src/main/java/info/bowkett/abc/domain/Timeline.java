@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 /**
+ * Domain model object for an ordered set of a user's posts i.e. a timeline.
  * Created by jbowkett on 31/08/2014.
  */
 public class Timeline {
