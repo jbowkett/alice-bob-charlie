@@ -8,6 +8,7 @@ import info.bowkett.abc.domain.Post;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.domain.Wall;
+import info.bowkett.abc.shell.CommandParser;
 
 /**
  * Created by jbowkett on 29/08/2014.

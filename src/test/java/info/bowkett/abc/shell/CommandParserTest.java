@@ -1,9 +1,9 @@
-package info.bowkett.abc;
+package info.bowkett.abc.shell;
 
 import info.bowkett.abc.commands.*;
+import info.bowkett.abc.shell.CommandParser;
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.After;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -27,7 +27,7 @@ public class CommandParserTest {
   @Test
   public void testSubmitValidPostCommand() throws Exception {
     final Command com = commandParser.submit("Alice -> I love the weather today");
-    assertTrue (com instanceof PostCommand);
+    assertTrue(com instanceof PostCommand);
   }
 
   @Test

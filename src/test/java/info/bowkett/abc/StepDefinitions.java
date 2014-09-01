@@ -6,6 +6,7 @@ import info.bowkett.abc.dal.*;
 import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
+import info.bowkett.abc.shell.CommandParser;
 import org.mockito.InOrder;
 
 import static org.hamcrest.CoreMatchers.is;
