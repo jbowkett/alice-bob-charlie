@@ -63,9 +63,14 @@ public class StepDefinitions {
     shell.submit(userName);
   }
 
-  @Then("^I see \"(.*?)\"$")
-  public void i_see(String post) throws Throwable {
-    verify(consoleSpy).print(post);
+  @Then("^I see$")
+  public void i_see(String posts) throws Throwable {
+    final String[] lines = posts.split("\n");
+    final InOrder inOrder = inOrder(consoleSpy);
+    for (String line : lines) {
+      inOrder.verify(consoleSpy).print(line);
+      inOrder.verify(consoleSpy).timestamp(anyLong());
+    }
   }
 
   @When("^\"(.*?)\" follows \"(.*?)\"$")
