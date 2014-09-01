@@ -8,5 +8,5 @@ import java.util.Set;
 public interface FollowRepository {
   public void addFollowing(User userDoingFollowing, User userToFollow);
 
-  public Set<User> getSubscriptionsFor(User userDoingFollowing);
+  public Subscriptions getSubscriptionsFor(User userDoingFollowing);
 }

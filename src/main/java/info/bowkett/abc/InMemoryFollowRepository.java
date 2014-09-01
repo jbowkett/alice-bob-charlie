@@ -1,8 +1,5 @@
 package info.bowkett.abc;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -22,21 +19,7 @@ public class InMemoryFollowRepository implements FollowRepository {
   }
 
   @Override
-  public Set<User> getSubscriptionsFor(User userDoingFollowing) {
-    final Subscriptions subs =
-        userToSubscriptionsMap.getOrDefault(userDoingFollowing, new Subscriptions());
-    return subs.unmodifiableSet();
-  }
-
-  private class Subscriptions {
-    private final Set<User> subscriptions = new HashSet<>();
-
-    public void add(User toFollow){
-      subscriptions.add(toFollow);
-    }
-
-    public Set<User> unmodifiableSet() {
-      return Collections.unmodifiableSet(subscriptions);
-    }
+  public Subscriptions getSubscriptionsFor(User userDoingFollowing) {
+    return userToSubscriptionsMap.getOrDefault(userDoingFollowing, new Subscriptions());
   }
 }

@@ -69,7 +69,7 @@ public class StepDefinitions {
     final String follow = follow(userNameDoingFollowing, userNameBeingFollowed);
     shell.submit(follow);
     final User userDoingFollowing = userRepo.get(userNameDoingFollowing);
-    final Set<User> usersBeingFollowed = followRepo.getSubscriptionsFor(userDoingFollowing);
+    final Subscriptions usersBeingFollowed = followRepo.getSubscriptionsFor(userDoingFollowing);
     assertTrue(usersBeingFollowed.stream().anyMatch(u -> u.getName().equals(userNameBeingFollowed)));
   }
 

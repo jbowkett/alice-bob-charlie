@@ -4,7 +4,6 @@ import info.bowkett.abc.commands.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Stream;
 
 /**
@@ -67,12 +66,12 @@ public class Shell {
   }
 
   private void doWall(User user) {
-    final Set<User> subscriptions = followRepo.getSubscriptionsFor(user);
+    final Subscriptions subscriptions = followRepo.getSubscriptionsFor(user);
+    final Stream<Timeline> timelinesForOthers = subscriptions.stream().map(timelineRepo::get);
     final Timeline userTimeline = timelineRepo.get(user);
-    final Stream<Timeline> timelinesForOthers = subscriptions.stream().map(u -> timelineRepo.get(u));
     final List<Post> wall = new ArrayList<>();
-    timelinesForOthers.forEach(timeline -> timeline.forEachRecentFirst(post -> wall.add(post)));
-    userTimeline.forEachRecentFirst(post -> wall.add(post));
+    timelinesForOthers.forEach(timeline -> timeline.forEachRecentFirst(wall::add));
+    userTimeline.forEachRecentFirst(wall::add);
     wall.sort((o1, o2) -> (int)(o2.getTimestamp() - o1.getTimestamp()));
     wall.stream().forEach(post -> {
       console
