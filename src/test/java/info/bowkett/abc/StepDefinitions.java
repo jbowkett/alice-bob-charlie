@@ -88,6 +88,7 @@ public class StepDefinitions {
     final InOrder inOrder = inOrder(consoleSpy);
     for (String line : lines) {
       inOrder.verify(consoleSpy).print(line);
+      inOrder.verify(consoleSpy).timestamp(anyLong());
     }
   }
 
