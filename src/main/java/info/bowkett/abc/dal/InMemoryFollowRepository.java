@@ -1,6 +1,5 @@
 package info.bowkett.abc.dal;
 
-import info.bowkett.abc.FollowRepository;
 import info.bowkett.abc.Subscriptions;
 import info.bowkett.abc.domain.User;
 
