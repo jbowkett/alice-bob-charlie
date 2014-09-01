@@ -1,5 +1,7 @@
 package info.bowkett.abc;
 
+import info.bowkett.abc.domain.Post;
+
 import java.util.LinkedList;
 import java.util.List;
 import java.util.function.Consumer;
