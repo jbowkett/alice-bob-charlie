@@ -16,19 +16,17 @@ import static org.mockito.Mockito.*;
  */
 public class StepDefinitions {
 
-  private final CommandParser commandParser;
   private final Shell shell;
   private final TimelineRepository timelineRepo;
-  private final Console console;
   private final Console consoleSpy;
   private final FollowRepository followRepo;
   private UserRepository userRepo;
 
   public StepDefinitions() {
-    commandParser = new CommandParser();
+    final CommandParser commandParser = new CommandParser();
     this.userRepo = new InMemoryUserRepository();
     timelineRepo = new InMemoryTimelineRepository();
-    console = new Console(new Timeformat());
+    final Console console = new Console(new Timeformat());
     consoleSpy = spy(console);
     followRepo = new InMemoryFollowRepository();
     shell = new Shell(commandParser, userRepo, timelineRepo, consoleSpy, followRepo);
