@@ -20,6 +20,7 @@ public class Timeline {
 
   public void add(Post post) {
     timeline.add(post);
+    sortInTimestampOrder();
   }
 
   public int size() {
@@ -28,5 +29,9 @@ public class Timeline {
 
   public boolean anyMatch(Predicate<? super Post> predicate){
     return timeline.stream().anyMatch(predicate);
+  }
+
+  private void sortInTimestampOrder() {
+    timeline.sort((p1, p2) -> (int)(p2.getTimestamp() - p1.getTimestamp()));
   }
 }

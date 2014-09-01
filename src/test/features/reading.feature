@@ -9,9 +9,22 @@ Feature:
   Good game though. (1 minute ago)
   Damn! We lost! (2 minutes ago)
 
-  Scenario: Viewing all of the posts by one user
+  Background:
     Given "Alice" posts "I love the weather today"
     And   "Bob" posts "Damn! We lost!"
     And   "Bob" posts "Good game though."
+
+  Scenario: Viewing all of the posts by one user
     When  reading the posts by "Alice"
-    Then  I see "I love the weather today"
+    Then  I see
+    """
+    I love the weather today
+    """
+
+  Scenario: Viewing multiple posts by one user
+    When  reading the posts by "Bob"
+    Then  I see
+    """
+    Good game though.
+    Damn! We lost!
+    """
