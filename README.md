@@ -8,6 +8,7 @@ Built using Java 8 and Gradle.
 Clone this repo, then run:
 
 `$ gradle build`
+
 `$ java -jar build/libs/alice-bob-charlie-1.0.jar`
 
 The main source is in `src/main/java`, the Junit tests in `src/test/java`.  
