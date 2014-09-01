@@ -1,6 +1,7 @@
 package info.bowkett.abc;
 
 import info.bowkett.abc.domain.Post;
+import info.bowkett.abc.domain.User;
 import org.junit.Test;
 import org.junit.Before;
 

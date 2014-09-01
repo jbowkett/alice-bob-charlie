@@ -1,9 +1,4 @@
-package info.bowkett.abc;
-
-import info.bowkett.abc.commands.PostCommand;
-
-import java.util.LinkedList;
-import java.util.List;
+package info.bowkett.abc.domain;
 
 /**
  * Created by jbowkett on 29/08/2014.

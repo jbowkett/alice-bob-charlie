@@ -1,7 +1,7 @@
 package info.bowkett.abc;
 
-import java.util.ArrayList;
-import java.util.List;
+import info.bowkett.abc.domain.User;
+
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 

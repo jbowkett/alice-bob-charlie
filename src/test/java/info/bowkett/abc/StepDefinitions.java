@@ -2,9 +2,8 @@ package info.bowkett.abc;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import info.bowkett.abc.domain.User;
 import org.mockito.InOrder;
-
-import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;

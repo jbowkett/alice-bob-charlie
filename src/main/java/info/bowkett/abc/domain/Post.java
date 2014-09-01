@@ -1,7 +1,5 @@
 package info.bowkett.abc.domain;
 
-import info.bowkett.abc.User;
-
 /**
  * Created by jbowkett on 30/08/2014.
  */

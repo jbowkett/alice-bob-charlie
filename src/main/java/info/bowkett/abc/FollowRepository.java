@@ -1,6 +1,6 @@
 package info.bowkett.abc;
 
-import java.util.Set;
+import info.bowkett.abc.domain.User;
 
 /**
  * Created by jbowkett on 31/08/2014.
