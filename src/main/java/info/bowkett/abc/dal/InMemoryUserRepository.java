@@ -1,5 +1,6 @@
-package info.bowkett.abc;
+package info.bowkett.abc.dal;
 
+import info.bowkett.abc.UserRepository;
 import info.bowkett.abc.domain.User;
 
 import java.util.concurrent.ConcurrentHashMap;
