@@ -1,6 +1,5 @@
 package info.bowkett.abc.dal;
 
-import info.bowkett.abc.TimelineRepository;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 

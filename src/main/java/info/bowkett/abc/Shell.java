@@ -2,6 +2,7 @@ package info.bowkett.abc;
 
 import info.bowkett.abc.commands.*;
 import info.bowkett.abc.dal.FollowRepository;
+import info.bowkett.abc.dal.TimelineRepository;
 import info.bowkett.abc.dal.UserRepository;
 import info.bowkett.abc.domain.Post;
 import info.bowkett.abc.domain.Timeline;
