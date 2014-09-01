@@ -2,10 +2,6 @@ package info.bowkett.abc;
 
 import info.bowkett.abc.commands.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Stream;
-
 /**
  * Created by jbowkett on 29/08/2014.
  */
@@ -15,15 +11,17 @@ public class Shell {
   private final TimelineRepository timelineRepo;
   private final Console console;
   private final FollowRepository followRepo;
+  private final WallFactory wallFactory;
 
   public Shell(CommandParser parser, UserRepository userRepo,
                TimelineRepository timelineRepo, Console console,
-               FollowRepository followRepo) {
+               FollowRepository followRepo, WallFactory wallFactory) {
     this.parser = parser;
     this.userRepo = userRepo;
     this.timelineRepo = timelineRepo;
     this.console = console;
     this.followRepo = followRepo;
+    this.wallFactory = wallFactory;
   }
 
 
@@ -66,16 +64,10 @@ public class Shell {
   }
 
   private void doWall(User user) {
-    final Subscriptions subscriptions = followRepo.getSubscriptionsFor(user);
-    final Stream<Timeline> timelinesForOthers = subscriptions.stream().map(timelineRepo::get);
-    final Timeline userTimeline = timelineRepo.get(user);
-    final List<Post> wall = new ArrayList<>();
-    timelinesForOthers.forEach(timeline -> timeline.forEachRecentFirst(wall::add));
-    userTimeline.forEachRecentFirst(wall::add);
-    wall.sort((o1, o2) -> (int)(o2.getTimestamp() - o1.getTimestamp()));
-    wall.stream().forEach(post -> {
+    final Wall wall = wallFactory.getWall(user);
+    wall.forEachRecentFirst(post -> {
       console
-          .print(post.getUser().getName() + " - "+post.getText())
+          .print(post.getUser().getName() + " - " + post.getText())
           .print(" ")
           .timestamp(post.getTimestamp())
           .println();

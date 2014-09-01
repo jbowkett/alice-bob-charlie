@@ -29,7 +29,8 @@ public class StepDefinitions {
     final Console console = new Console(new Timeformat());
     consoleSpy = spy(console);
     followRepo = new InMemoryFollowRepository();
-    shell = new Shell(commandParser, userRepo, timelineRepo, consoleSpy, followRepo);
+    final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
+    shell = new Shell(commandParser, userRepo, timelineRepo, consoleSpy, followRepo, wallFactory);
   }
 
   @When("^\"(.*?)\" posts \"(.*?)\"$")
