@@ -13,8 +13,8 @@ This will then drop into an interactive shell for the Alice, Bob & Charlie
 coding assignment.  However, Gradle does not play nicely with the System.in 
 stream.  Therefore, the best way to run the code is:
 
-`% gradle clean build`
-`% java -jar build/libs/alice-bob-charlie-1.0.jar`
+`$ gradle clean build`
+`$ java -jar build/libs/alice-bob-charlie-1.0.jar`
 
 The main source is in `src/main/java`, the Junit tests in `src/test/java`.  
 There are also cucumber scenarios in `test/features`.
