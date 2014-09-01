@@ -1,4 +1,4 @@
-package info.bowkett.abc;
+package info.bowkett.abc.shell;
 
 import info.bowkett.abc.dal.FollowRepository;
 import info.bowkett.abc.dal.TimelineRepository;

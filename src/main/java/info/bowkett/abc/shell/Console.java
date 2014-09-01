@@ -1,4 +1,4 @@
-package info.bowkett.abc;
+package info.bowkett.abc.shell;
 
 /**
  * Created by jbowkett on 30/08/2014.

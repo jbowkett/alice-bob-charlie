@@ -1,4 +1,4 @@
-package info.bowkett.abc;
+package info.bowkett.abc.shell;
 
 import java.util.concurrent.TimeUnit;
 
