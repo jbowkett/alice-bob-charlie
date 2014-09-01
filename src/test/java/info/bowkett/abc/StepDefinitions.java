@@ -4,12 +4,10 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.mockito.InOrder;
 
-import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 
@@ -47,7 +45,7 @@ public class StepDefinitions {
     final String userName = stripPosessive(posessive);
     final User user = userRepo.get(userName);
     final Timeline posts = timelineRepo.get(user);
-    assertTrue(posts.stream().anyMatch(p -> p.getText().equals(post)));
+    assertTrue(posts.anyMatch(p -> p.getText().equals(post)));
   }
 
   @Then("^\"(.*?)\" timeline contains (\\d+) posts$")

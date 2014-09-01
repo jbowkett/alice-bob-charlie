@@ -53,7 +53,7 @@ public class Shell {
 
   private void doView(User user) {
     final Timeline timeline = timelineRepo.get(user);
-    timeline.stream().forEach(post -> {
+    timeline.forEach(post -> {
       console.print(post.getText())
           .print(" ")
           .timestamp(post.getTimestamp())
@@ -72,8 +72,8 @@ public class Shell {
     final Timeline userTimeline = timelineRepo.get(user);
     final Stream<Timeline> timelinesForOthers = subscriptions.stream().map(u -> timelineRepo.get(u));
     final List<Post> wall = new ArrayList<>();
-    timelinesForOthers.forEach(timeline -> timeline.stream().forEach(post -> wall.add(post)));
-    userTimeline.stream().forEach(post -> wall.add(post));
+    timelinesForOthers.forEach(timeline -> timeline.forEach(post -> wall.add(post)));
+    userTimeline.forEach(post -> wall.add(post));
     wall.sort((o1, o2) -> (int)(o2.getTimestamp() - o1.getTimestamp()));
     wall.stream().forEach(post -> {
       console
