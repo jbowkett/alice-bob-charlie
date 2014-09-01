@@ -1,9 +1,6 @@
 package info.bowkett.abc;
 
-import info.bowkett.abc.commands.Command;
-import info.bowkett.abc.commands.FollowCommand;
-import info.bowkett.abc.commands.PostCommand;
-import info.bowkett.abc.commands.ViewCommand;
+import info.bowkett.abc.commands.*;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.After;
@@ -12,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Shell Tester.
+ * CommandParser Tester.
  *
  * @author <Authors name>
  * @version 1.0
@@ -25,10 +22,6 @@ public class CommandParserTest {
   @Before
   public void before() throws Exception {
     commandParser = new CommandParser();
-  }
-
-  @After
-  public void after() throws Exception {
   }
 
   @Test
@@ -59,6 +52,17 @@ public class CommandParserTest {
   public void testFollowUserCommandGetsPersonDoingFollowed() throws Exception {
     final Command com = commandParser.submit("Alice follows Bob");
     assertEquals("Alice", com.getUserName());
+  }
+
+  @Test
+  public void testWallYieldsWallCommand() throws Exception {
+    final Command com = commandParser.submit("Bob wall");
+    assertTrue(com instanceof WallCommand);
+  }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testInvalidCommandYieldsException() {
+    commandParser.submit("Bob wall-e");
   }
 
   @Test

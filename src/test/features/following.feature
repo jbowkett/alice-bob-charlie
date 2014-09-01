@@ -26,7 +26,12 @@ Feature:
 Scenario: A user can post and subscribe to another user's posts and view them
   integrated in order on their wall
     When  "Charlie" follows "Alice"
-    Then  "Charlie's" wall contains 2 posts
+    And   "Charlie" views their wall
+    Then  I see the wall contains:
+    """
+    Charlie - I'm in New York today! Anyone want to have a coffee?
+    Alice - I love the weather today
+    """
 
 
   @wip

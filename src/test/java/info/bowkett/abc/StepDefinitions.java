@@ -2,6 +2,7 @@ package info.bowkett.abc;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import org.mockito.InOrder;
 
 import java.util.List;
 import java.util.Set;
@@ -45,7 +46,7 @@ public class StepDefinitions {
   public void timeline_contains_the_post(String posessive, String post) throws Throwable {
     final String userName = stripPosessive(posessive);
     final User user = userRepo.get(userName);
-    final List<Post> posts = timelineRepo.get(user);
+    final Timeline posts = timelineRepo.get(user);
     assertTrue(posts.stream().anyMatch(p -> p.getText().equals(post)));
   }
 
@@ -53,8 +54,8 @@ public class StepDefinitions {
   public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
     final String userName = stripPosessive(posessive);
     final User user = userRepo.get(userName);
-    final List<Post> posts = timelineRepo.get(user);
-    assertEquals(expectedCount, posts.size());
+    final Timeline timeline = timelineRepo.get(user);
+    assertEquals(expectedCount, timeline.size());
   }
 
   @When("^reading the posts by \"(.*?)\"$")
@@ -76,10 +77,18 @@ public class StepDefinitions {
     assertTrue(usersBeingFollowed.stream().anyMatch(u -> u.getName().equals(userNameBeingFollowed)));
   }
 
-  @Then("^\"(.*?)\" wall contains (\\d+) posts$")
-  public void wall_contains_posts(String userNamePosessive, int postCount) throws Throwable {
-    final String userName = stripPosessive(userNamePosessive);
+  @When("^\"(.*?)\" views their wall$")
+  public void views_their_wall(String userName) throws Throwable {
+    shell.submit(userName + " wall");
+  }
 
+  @Then("^I see the wall contains:$")
+  public void i_see_the_wall(String wallText) throws Throwable {
+    final String[] lines = wallText.split("\n");
+    final InOrder inOrder = inOrder(consoleSpy);
+    for (String line : lines) {
+      inOrder.verify(consoleSpy).print(line);
+    }
   }
 
   String stripPosessive(String posessive) {
