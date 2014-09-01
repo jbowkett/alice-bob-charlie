@@ -7,7 +7,7 @@ Built using Java 8 and Gradle.
 
 Clone this repo, then run:
 
-`% gradle run`
+`$ gradle run`
 
 This will then drop into an interactive shell for the Alice, Bob & Charlie 
 coding assignment.  However, Gradle does not play nicely with the System.in 
