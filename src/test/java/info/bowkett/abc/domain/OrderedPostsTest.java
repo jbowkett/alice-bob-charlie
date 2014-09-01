@@ -1,8 +1,5 @@
 package info.bowkett.abc.domain;
 
-import info.bowkett.abc.domain.Post;
-import info.bowkett.abc.domain.User;
-import info.bowkett.abc.domain.Wall;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -13,29 +10,29 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 
 /**
- * WallFactory Tester.
+ * OrderedPosts Tester.
  *
- * @author <Authors name>
+ * @author James Bowkett
  * @version 1.0
  * @since <pre>Sep 1, 2014</pre>
  */
-public class WallTest {
+public class OrderedPostsTest {
 
-  private Wall wall;
+  private OrderedPosts orderedPosts;
 
   @Before
   public void before() throws Exception {
-    this.wall = new Wall();
+    this.orderedPosts = new OrderedPosts();
   }
 
   @Test
   public void testWallWithTwoPostsIsOrderedWithMostRecentFirstWhenAddedInOrder() throws Exception {
     final Post earlierPost = mockPost(10000);
     final Post laterPost = mockPost(12000);
-    wall.add(earlierPost);
-    wall.add(laterPost);
+    orderedPosts.add(earlierPost);
+    orderedPosts.add(laterPost);
     final AbstractSequentialList<Post> toAssert = new LinkedList<Post>();
-    wall.forEachRecentFirst(toAssert::add);
+    orderedPosts.forEachRecentFirst(toAssert::add);
     assertEquals(laterPost, toAssert.get(0));
     assertEquals(earlierPost, toAssert.get(1));
   }
@@ -44,10 +41,10 @@ public class WallTest {
   public void testWallWithTwoPostsIsOrderedWithMostRecentFirstWhenAddedOutOfSequence() throws Exception {
     final Post laterPost = mockPost(12000);
     final Post earlierPost = mockPost(10000);
-    wall.add(laterPost);
-    wall.add(earlierPost);
+    orderedPosts.add(laterPost);
+    orderedPosts.add(earlierPost);
     final AbstractSequentialList<Post> toAssert = new LinkedList<Post>();
-    wall.forEachRecentFirst(toAssert::add);
+    orderedPosts.forEachRecentFirst(toAssert::add);
     assertEquals(laterPost, toAssert.get(0));
     assertEquals(earlierPost, toAssert.get(1));
   }
