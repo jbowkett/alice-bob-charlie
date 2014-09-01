@@ -3,6 +3,10 @@ package info.bowkett.abc.shell;
 import info.bowkett.abc.commands.*;
 
 /**
+ *
+ * Parses commands as specified in the different feature files.
+ * Follows the command pattern (Gamma et al.)
+ *
  * Created by jbowkett on 27/08/2014.
  */
 public class CommandParser {
@@ -11,6 +15,11 @@ public class CommandParser {
   private static final String POST = "->";
   private static final String WALL = "wall";
 
+  /**
+   * @param shellCommand the line given at the shell prompt
+   * @return a command instance denoting what should be done along with
+   * appropriate information extracted from shellCommand
+   */
   public Command submit(String shellCommand) {
     final String[] words = shellCommand.split(" ");
     final String userName = words[0].trim();

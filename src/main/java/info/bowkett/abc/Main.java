@@ -18,7 +18,11 @@ public class Main {
     shell.startShell();
   }
 
-  public static void main(String [] args){
+  /**
+   * Main shell entry point
+   * @param argsAreIgnored
+   */
+  public static void main(String [] argsAreIgnored){
     final CommandParser commandParser = new CommandParser();
     final UserRepository userRepo = new InMemoryUserRepository();
     final TimelineRepository timelineRepo = new InMemoryTimelineRepository();
