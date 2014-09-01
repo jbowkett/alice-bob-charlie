@@ -1,6 +1,7 @@
 package info.bowkett.abc;
 
 import info.bowkett.abc.dal.FollowRepository;
+import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.domain.Wall;

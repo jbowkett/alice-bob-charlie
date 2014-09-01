@@ -1,6 +1,6 @@
 package info.bowkett.abc.dal;
 
-import info.bowkett.abc.Subscriptions;
+import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.User;
 
 /**

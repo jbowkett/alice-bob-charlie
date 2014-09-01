@@ -6,6 +6,7 @@ import info.bowkett.abc.dal.FollowRepository;
 import info.bowkett.abc.dal.InMemoryFollowRepository;
 import info.bowkett.abc.dal.InMemoryTimelineRepository;
 import info.bowkett.abc.dal.InMemoryUserRepository;
+import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 import org.mockito.InOrder;

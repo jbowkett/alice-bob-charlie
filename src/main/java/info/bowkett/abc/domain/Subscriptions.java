@@ -1,4 +1,4 @@
-package info.bowkett.abc;
+package info.bowkett.abc.domain;
 
 import info.bowkett.abc.domain.User;
 
