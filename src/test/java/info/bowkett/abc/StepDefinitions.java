@@ -63,7 +63,7 @@ public class StepDefinitions {
     shell.submit(userName);
   }
 
-  @Then("^I see$")
+  @Then("^I see:$")
   public void i_see(String posts) throws Throwable {
     final String[] lines = posts.split("\n");
     final InOrder inOrder = inOrder(consoleSpy);
@@ -85,16 +85,6 @@ public class StepDefinitions {
   @When("^\"(.*?)\" views their wall$")
   public void views_their_wall(String userName) throws Throwable {
     shell.submit(userName + " wall");
-  }
-
-  @Then("^I see the wall contains:$")
-  public void i_see_the_wall(String wallText) throws Throwable {
-    final String[] lines = wallText.split("\n");
-    final InOrder inOrder = inOrder(consoleSpy);
-    for (String line : lines) {
-      inOrder.verify(consoleSpy).print(line);
-      inOrder.verify(consoleSpy).timestamp(anyLong());
-    }
   }
 
   String stripPosessive(String posessive) {

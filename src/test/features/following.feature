@@ -27,7 +27,7 @@ Scenario: A user can post and subscribe to another user's posts and view them
   integrated in order on their wall
     When  "Charlie" follows "Alice"
     And   "Charlie" views their wall
-    Then  I see the wall contains:
+    Then  I see:
     """
     Charlie - I'm in New York today! Anyone want to have a coffee?
     Alice - I love the weather today
@@ -39,7 +39,7 @@ Scenario: A user can post and subscribe to another user's posts and view them
     Given "Charlie" follows "Alice"
     When  "Charlie" follows "Bob"
     And   "Charlie" views their wall
-    Then  I see the wall contains:
+    Then  I see:
     """
     Charlie - I'm in New York today! Anyone want to have a coffee?
     Bob - Good game though.

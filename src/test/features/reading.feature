@@ -16,14 +16,14 @@ Feature:
 
   Scenario: Viewing all of the posts by one user
     When  reading the posts by "Alice"
-    Then  I see
+    Then  I see:
     """
     I love the weather today
     """
 
   Scenario: Viewing multiple posts by one user
     When  reading the posts by "Bob"
-    Then  I see
+    Then  I see:
     """
     Good game though.
     Damn! We lost!
