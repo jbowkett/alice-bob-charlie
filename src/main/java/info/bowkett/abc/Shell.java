@@ -3,6 +3,7 @@ package info.bowkett.abc;
 import info.bowkett.abc.commands.*;
 import info.bowkett.abc.domain.Post;
 import info.bowkett.abc.domain.User;
+import info.bowkett.abc.domain.Wall;
 
 /**
  * Created by jbowkett on 29/08/2014.
