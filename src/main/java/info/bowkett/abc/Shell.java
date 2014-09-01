@@ -33,38 +33,54 @@ public class Shell {
     final Command command = parser.submit(shellCommand);
     final User user = userRepo.get(command.getUserName());
     if (command instanceof PostCommand){
-      final String text = ((PostCommand) command).getText();
-      timelineRepo.get(user).add(new Post(user, text));
+      doPost((PostCommand) command, user);
     }
     else if (command instanceof ViewCommand){
-      final Timeline timeline = timelineRepo.get(user);
-      timeline.stream().forEach(post -> {
-        console.print(post.getText())
-            .print(" ")
-            .timestamp(post.getTimestamp())
-            .println();
-      });
+      doView(user);
     }
     else if (command instanceof FollowCommand){
-      final String toFollow = ((FollowCommand) command).getUserNameBeingFollowed();
-      final User userToFollow = userRepo.get(toFollow);
-      followRepo.addFollowing(user, userToFollow);
+      doFollow((FollowCommand) command, user);
     }
     else if (command instanceof WallCommand){
-      final Set<User> subscriptions = followRepo.getSubscriptionsFor(user);
-      final Timeline userTimeline = timelineRepo.get(user);
-      final Stream<Timeline> timelinesForOthers = subscriptions.stream().map(u -> timelineRepo.get(u));
-      final List<Post> wall = new ArrayList<>();
-      timelinesForOthers.forEach(timeline -> timeline.stream().forEach(post -> wall.add(post)));
-      userTimeline.stream().forEach(post -> wall.add(post));
-      wall.sort((o1, o2) -> (int)(o2.getTimestamp() - o1.getTimestamp()));
-      wall.stream().forEach(post -> {
-        console
-            .print(post.getUser().getName() + " - "+post.getText())
-            .print(" ")
-            .timestamp(post.getTimestamp())
-            .println();
-      });
+      doWall(user);
     }
+  }
+
+  private void doPost(PostCommand command, User user) {
+    final String text = command.getText();
+    timelineRepo.get(user).add(new Post(user, text));
+  }
+
+  private void doView(User user) {
+    final Timeline timeline = timelineRepo.get(user);
+    timeline.stream().forEach(post -> {
+      console.print(post.getText())
+          .print(" ")
+          .timestamp(post.getTimestamp())
+          .println();
+    });
+  }
+
+  private void doFollow(FollowCommand command, User user) {
+    final String toFollow = command.getUserNameBeingFollowed();
+    final User userToFollow = userRepo.get(toFollow);
+    followRepo.addFollowing(user, userToFollow);
+  }
+
+  private void doWall(User user) {
+    final Set<User> subscriptions = followRepo.getSubscriptionsFor(user);
+    final Timeline userTimeline = timelineRepo.get(user);
+    final Stream<Timeline> timelinesForOthers = subscriptions.stream().map(u -> timelineRepo.get(u));
+    final List<Post> wall = new ArrayList<>();
+    timelinesForOthers.forEach(timeline -> timeline.stream().forEach(post -> wall.add(post)));
+    userTimeline.stream().forEach(post -> wall.add(post));
+    wall.sort((o1, o2) -> (int)(o2.getTimestamp() - o1.getTimestamp()));
+    wall.stream().forEach(post -> {
+      console
+          .print(post.getUser().getName() + " - "+post.getText())
+          .print(" ")
+          .timestamp(post.getTimestamp())
+          .println();
+    });
   }
 }
