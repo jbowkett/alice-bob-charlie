@@ -1,6 +1,7 @@
 package info.bowkett.abc.commands;
 
 /**
+ * Follow/subscribe command issued in the shell
  * Created by jbowkett on 31/08/2014.
  */
 public class FollowCommand implements Command{

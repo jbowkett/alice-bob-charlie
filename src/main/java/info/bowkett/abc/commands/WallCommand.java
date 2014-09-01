@@ -1,6 +1,7 @@
 package info.bowkett.abc.commands;
 
 /**
+ * Wall shell command
  * Created by jbowkett on 31/08/2014.
  */
 public class WallCommand implements Command {

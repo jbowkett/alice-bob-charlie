@@ -1,6 +1,7 @@
 package info.bowkett.abc.commands;
 
 /**
+ * Post message shell command
  * Created by jbowkett on 29/08/2014.
  */
 public class PostCommand implements Command {
@@ -15,6 +16,7 @@ public class PostCommand implements Command {
     return postText;
   }
 
+  @Override
   public String getUserName() {
     return userName;
   }
