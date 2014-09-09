@@ -19,11 +19,13 @@ public class CommandFactory {
   private final UserRepository userRepo;
   private final TimelineRepository timelineRepo;
   private final FollowRepository followRepo;
+  private final WallFactory wallFactory;
 
-  public CommandFactory(UserRepository userRepo, TimelineRepository timelineRepo, FollowRepository followRepo) {
+  public CommandFactory(UserRepository userRepo, TimelineRepository timelineRepo, FollowRepository followRepo, WallFactory wallFactory) {
     this.userRepo = userRepo;
     this.timelineRepo = timelineRepo;
     this.followRepo = followRepo;
+    this.wallFactory = wallFactory;
   }
 
 
@@ -40,7 +42,7 @@ public class CommandFactory {
       return new ReadCommand(userName, timelineRepo, userRepo);
     }
     else if (wallCommand(words)) {
-      return new WallCommand(userName);
+      return new WallCommand(userName, userRepo, wallFactory);
     }
     else if (followCommand(words)) {
       return new FollowCommand(userName, words[2], userRepo, followRepo);

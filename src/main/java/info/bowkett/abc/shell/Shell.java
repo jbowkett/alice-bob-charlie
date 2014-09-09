@@ -65,22 +65,6 @@ public class Shell {
   public void submit(String shellCommand) {
     final Command command = parser.getCommand(shellCommand);
     final User user = userRepo.get(command.getUserName());
-
     command.execute(console);
-
-    if (command instanceof WallCommand){
-      doWall(user);
-    }
-  }
-
-  private void doWall(User user) {
-    final Wall wall = wallFactory.getWall(user);
-    wall.forEachRecentFirst(post -> {
-      console
-          .print(post.getUser().getName() + " - " + post.getText())
-          .print(" ")
-          .timestamp(post.getTimestamp())
-          .println();
-    });
   }
 }
