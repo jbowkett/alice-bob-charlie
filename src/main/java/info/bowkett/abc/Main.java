@@ -23,13 +23,13 @@ public class Main {
    * @param argsAreIgnored
    */
   public static void main(String [] argsAreIgnored){
-    final CommandParser commandParser = new CommandParser();
+    final CommandFactory commandFactory = new CommandFactory();
     final UserRepository userRepo = new InMemoryUserRepository();
     final TimelineRepository timelineRepo = new InMemoryTimelineRepository();
     final Console console = new Console(new Timeformat());
     final FollowRepository followRepo = new InMemoryFollowRepository();
     final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
-    final Shell shell = new Shell(commandParser, userRepo, timelineRepo, console, followRepo, wallFactory);
+    final Shell shell = new Shell(commandFactory, userRepo, timelineRepo, console, followRepo, wallFactory);
     new Main(shell).startShell();
   }
 }

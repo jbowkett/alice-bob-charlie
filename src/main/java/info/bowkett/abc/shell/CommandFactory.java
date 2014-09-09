@@ -8,7 +8,7 @@ import info.bowkett.abc.commands.*;
  *
  * Created by jbowkett on 27/08/2014.
  */
-public class CommandParser {
+public class CommandFactory {
 
   private static final String FOLLOWS = "follows";
   private static final String POST = "->";

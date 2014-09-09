@@ -26,14 +26,14 @@ public class StepDefinitions {
   private UserRepository userRepo;
 
   public StepDefinitions() {
-    final CommandParser commandParser = new CommandParser();
+    final CommandFactory commandFactory = new CommandFactory();
     this.userRepo = new InMemoryUserRepository();
     timelineRepo = new InMemoryTimelineRepository();
     final Console console = new Console(new Timeformat());
     consoleSpy = spy(console);
     followRepo = new InMemoryFollowRepository();
     final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
-    shell = new Shell(commandParser, userRepo, timelineRepo, consoleSpy, followRepo, wallFactory);
+    shell = new Shell(commandFactory, userRepo, timelineRepo, consoleSpy, followRepo, wallFactory);
   }
 
   @When("^\"(.*?)\" posts \"(.*?)\"$")

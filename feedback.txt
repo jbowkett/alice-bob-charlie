@@ -40,8 +40,6 @@ changed. It shouldn’t be the case if Command interface was better defined.
 Shell: The class violates OCP and SRP. It has the behaviour of all commands and
 would need to be changed if a new command is added or a command is removed.
 
-CommandParser: It’s not a parser. It’s a factory class (DDD) with a factory
-method (GoF pattern).
 
 CommandParser.submit(): Bad name. We normally would call a “parse” method on a
 parser and not submit.
@@ -94,10 +92,7 @@ entities/aggregates as a collection. Subtle but different. In a DAO you would
 have “create”, “read”, “delete”, etc. In a Repository you would have “add”,
 “find”, “remove”.
 
-TimeFormatTest: It’s in the wrong repository. Should be aligned with the
-package where TimeFormat is (shell).
 
-StepDefinitionsTest: I’m not sure why we need this(?)
 
 
 

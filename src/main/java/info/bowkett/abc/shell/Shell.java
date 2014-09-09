@@ -18,14 +18,14 @@ import java.util.Scanner;
  * Created by jbowkett on 29/08/2014.
  */
 public class Shell {
-  private final CommandParser parser;
+  private final CommandFactory parser;
   private UserRepository userRepo;
   private final TimelineRepository timelineRepo;
   private final Console console;
   private final FollowRepository followRepo;
   private final WallFactory wallFactory;
 
-  public Shell(CommandParser parser, UserRepository userRepo,
+  public Shell(CommandFactory parser, UserRepository userRepo,
                TimelineRepository timelineRepo, Console console,
                FollowRepository followRepo, WallFactory wallFactory) {
     this.parser = parser;
