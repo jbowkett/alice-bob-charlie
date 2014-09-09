@@ -33,17 +33,10 @@ class OrderedPosts {
   private void sortInTimestampOrder() {
     posts.sort((p1, p2) -> {
       final long difference = p2.getTimestamp() - p1.getTimestamp();
-      final int order;
-      if (difference == 0){
-        order = 0;
-      }
-      else if (difference > 0){
-        order = 1;
-      }
-      else{
-        order = -1;
-      }
-      return order;
+
+      return difference < 0 ? -1:
+             difference > 0 ?  1:
+                               0;
     });
   }
 }
