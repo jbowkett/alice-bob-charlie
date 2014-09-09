@@ -19,7 +19,7 @@ public class CommandFactory {
    * @return a command instance denoting what should be done along with
    * appropriate information extracted from shellCommand
    */
-  public Command submit(String shellCommand) {
+  public Command getCommand(String shellCommand) {
     final String[] words = shellCommand.split(" ");
     final String userName = words[0].trim();
 

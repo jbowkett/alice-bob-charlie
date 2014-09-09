@@ -25,54 +25,54 @@ public class CommandFactoryTest {
 
   @Test
   public void testSubmitValidPostCommand() throws Exception {
-    final Command com = commandFactory.submit("Alice -> I love the weather today");
+    final Command com = commandFactory.getCommand("Alice -> I love the weather today");
     assertTrue(com instanceof PostCommand);
   }
 
   @Test
   public void testSubmitUserCommandYieldsAViewCommand() throws Exception {
-    final Command com = commandFactory.submit("Alice");
+    final Command com = commandFactory.getCommand("Alice");
     assertTrue(com instanceof ViewCommand);
   }
 
   @Test
   public void testFollowUserYieldsAFollowUserCommand() throws Exception {
-    final Command com = commandFactory.submit("Alice follows Bob");
+    final Command com = commandFactory.getCommand("Alice follows Bob");
     assertTrue(com instanceof FollowCommand);
   }
 
   @Test
   public void testFollowUserCommandGetsPersonBeingFollowed() throws Exception {
-    final FollowCommand com = (FollowCommand) commandFactory.submit("Alice follows Bob");
+    final FollowCommand com = (FollowCommand) commandFactory.getCommand("Alice follows Bob");
     assertEquals("Bob", com.getUserNameBeingFollowed());
   }
 
   @Test
   public void testFollowUserCommandGetsPersonDoingFollowed() throws Exception {
-    final Command com = commandFactory.submit("Alice follows Bob");
+    final Command com = commandFactory.getCommand("Alice follows Bob");
     assertEquals("Alice", com.getUserName());
   }
 
   @Test
   public void testWallYieldsWallCommand() throws Exception {
-    final Command com = commandFactory.submit("Bob wall");
+    final Command com = commandFactory.getCommand("Bob wall");
     assertTrue(com instanceof WallCommand);
   }
 
   @Test(expected = IllegalArgumentException.class)
   public void testInvalidCommandYieldsException() {
-    commandFactory.submit("Bob wall-e");
+    commandFactory.getCommand("Bob wall-e");
   }
 
   @Test
   public void testSubmitValidPostCommandContainsUserName() throws Exception {
-    final Command com = commandFactory.submit("Alice -> I love the weather today");
+    final Command com = commandFactory.getCommand("Alice -> I love the weather today");
     assertEquals("Alice", com.getUserName());
   }
 
   @Test
   public void testSubmitValidPostCommandContainsPostText() throws Exception {
-    final PostCommand com = (PostCommand) commandFactory.submit("Alice -> I love the weather today");
+    final PostCommand com = (PostCommand) commandFactory.getCommand("Alice -> I love the weather today");
     assertEquals("I love the weather today", com.getText());
   }
 }

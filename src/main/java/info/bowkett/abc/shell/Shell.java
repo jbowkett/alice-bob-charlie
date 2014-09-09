@@ -65,7 +65,7 @@ public class Shell {
    * @param shellCommand to parse
    */
   public void submit(String shellCommand) {
-    final Command command = parser.submit(shellCommand);
+    final Command command = parser.getCommand(shellCommand);
     final User user = userRepo.get(command.getUserName());
     if (command instanceof PostCommand){
       doPost((PostCommand) command, user);
