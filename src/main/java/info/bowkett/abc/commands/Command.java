@@ -11,8 +11,4 @@ public interface Command {
 
   void execute(Console console);
 
-  /**
-   * @return the userName of the user the command pertains to
-   */
-  public String getUserName();
 }

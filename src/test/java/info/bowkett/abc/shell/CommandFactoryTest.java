@@ -56,7 +56,7 @@ public class CommandFactoryTest {
   @Test
   public void testFollowUserCommandGetsPersonDoingFollowed() throws Exception {
     final Command com = commandFactory.getCommand("Alice follows Bob");
-    assertEquals("Alice", com.getUserName());
+    assertEquals("Alice", ((FollowCommand)com).getUserName());
   }
 
   @Test
@@ -73,7 +73,7 @@ public class CommandFactoryTest {
   @Test
   public void testSubmitValidPostCommandContainsUserName() throws Exception {
     final Command com = commandFactory.getCommand("Alice -> I love the weather today");
-    assertEquals("Alice", com.getUserName());
+    assertEquals("Alice", ((PostCommand)com).getUserName());
   }
 
   @Test

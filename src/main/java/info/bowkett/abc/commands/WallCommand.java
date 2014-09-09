@@ -33,9 +33,4 @@ public class WallCommand implements Command {
           .println();
     });
   }
-
-  @Override
-  public String getUserName() {
-    return userName;
-  }
 }

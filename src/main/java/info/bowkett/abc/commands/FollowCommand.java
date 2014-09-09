@@ -29,7 +29,6 @@ public class FollowCommand implements Command{
     followRepo.addFollowing(user, userToFollow);
   }
 
-  @Override
   public String getUserName() {
     return userNameDoingFollowing;
   }

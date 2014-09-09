@@ -3,45 +3,6 @@
 
 Shell (class and package): Not a domain name—too technical.
 
-Shell: Too many collaborators. Clear sign that the class is doing too much and
-that the design is not quite right.
-
-Shell/Console: Shell uses Scanner to read from console and Console (class) to
-print. Why Console class doesn’t read from console as well?
-
-Shell.submit(): Misnomer. JavaDoc starts with “Parse…” I would call this method
-“execute(shellCommand)” instead and would delete the JavaDoc.
-
-Shell.submit(): It highlights a design problem. If you need to use “instanceof”
-and casting when you have an interface (Command in this case), the interface is
-not good enough—it’s not abstracting as it should.
-
-Shell.submit(): Violates OCP. If you add a new Command, this method needs to be
-changed. It shouldn’t be the case if Command interface was better defined.
-
-
-Shell: The class violates OCP and SRP. It has the behaviour of all commands and
-would need to be changed if a new command is added or a command is removed.
-
-
-
-
-CommandParser: This should be the only (factory) class that knows about different
-commands. The rest of the application should only deal with the Command
-interface (with no instanceof or casting).
-
-Command: Badly implemented. It should be implemented as the Command pattern
-(GoF Pattern) with a single method execute(). There are a few ways you could
-implement it: a) Pass the shellCommand and Repository into the constructor and
-have an execute() method with no parameters; b) Pass the Repository in the
-constructor and pass the shellCommand as a parameter to the execute(shellCommand)
-method. The command would know if the shellCommand belongs to it, would parse it,
-and invoke the respective method on the repository.
-
-Command implementations (Follow, Post, View, Wall): Should not be dummy data
-structures. It should have the respective behaviour (currently on Shell class).
-If done like described here and above, there wouldn’t be a need to have a
-public method to return the user name.
 
 
 

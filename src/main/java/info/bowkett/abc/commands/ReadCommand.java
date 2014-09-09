@@ -32,9 +32,4 @@ public class ReadCommand implements Command {
           .println();
     });
   }
-
-  @Override
-  public String getUserName() {
-    return userName;
-  }
 }

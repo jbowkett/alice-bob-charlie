@@ -33,7 +33,6 @@ public class PostCommand implements Command {
     return postText;
   }
 
-  @Override
   public String getUserName() {
     return userName;
   }
