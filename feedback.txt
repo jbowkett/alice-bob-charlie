@@ -74,69 +74,6 @@ have “create”, “read”, “delete”, etc. In a Repository you would have
 
 
 
-
-
-
-** Bugs **
-
-Wall order is incorrect. See below
-
-> Alice -> HI, I'm Alice
-
-> Bob -> I'm Bob
-
-> Alice -> Nice day today
-
-> Alice
-
-HI, I'm Alice (15 seconds ago)
-
-Nice day today (2 seconds ago)
-
-> Bob
-
-I'm Bob (10 seconds ago)
-
-> Charlie -> Hi, I'm Charlie
-
-> Charlie follows Alice
-
-> Charlie
-
-Hi, I'm Charlie (10 seconds ago)
-
-> Charlie wall
-
-Charlie - Hi, I'm Charlie (15 seconds ago)
-
-Alice - HI, I'm Alice (42 seconds ago)
-
-Alice - Nice day today (29 seconds ago)
-
-> Charlie follows Bob
-
-> Charlie wall
-
-Alice - HI, I'm Alice (52 seconds ago)
-
-Alice - Nice day today (40 seconds ago)
-
-Bob - I'm Bob (45 seconds ago)
-
-Charlie - Hi, I'm Charlie (25 seconds ago)
-
-> Charlie wall
-
-Alice - HI, I'm Alice (1 minute ago)
-
-Alice - Nice day today (1 minute ago)
-
-Bob - I'm Bob (1 minute ago)
-
-Charlie - Hi, I'm Charlie (48 seconds ago)
-
-
-
 **Consideration**
 
 It’s clear that James has a good experience with Cucumber and Acceptance Tests
