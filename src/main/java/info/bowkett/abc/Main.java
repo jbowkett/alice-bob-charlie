@@ -25,9 +25,9 @@ public class Main {
   public static void main(String [] argsAreIgnored){
     final UserRepository userRepo = new InMemoryUserRepository();
     final TimelineRepository timelineRepo = new InMemoryTimelineRepository();
-    final CommandFactory commandFactory = new CommandFactory(userRepo, timelineRepo);
-    final Console console = new Console(new Timeformat());
     final FollowRepository followRepo = new InMemoryFollowRepository();
+    final CommandFactory commandFactory = new CommandFactory(userRepo, timelineRepo, followRepo);
+    final Console console = new Console(new Timeformat());
     final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
     final Shell shell = new Shell(commandFactory, userRepo, timelineRepo, console, followRepo, wallFactory);
     new Main(shell).startShell();

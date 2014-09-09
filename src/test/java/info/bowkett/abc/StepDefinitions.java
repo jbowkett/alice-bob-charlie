@@ -28,10 +28,10 @@ public class StepDefinitions {
   public StepDefinitions() {
     this.userRepo = new InMemoryUserRepository();
     timelineRepo = new InMemoryTimelineRepository();
-    final CommandFactory commandFactory = new CommandFactory(userRepo, timelineRepo);
+    followRepo = new InMemoryFollowRepository();
+    final CommandFactory commandFactory = new CommandFactory(userRepo, timelineRepo, followRepo);
     final Console console = new Console(new Timeformat());
     consoleSpy = spy(console);
-    followRepo = new InMemoryFollowRepository();
     final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
     shell = new Shell(commandFactory, userRepo, timelineRepo, consoleSpy, followRepo, wallFactory);
   }

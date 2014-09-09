@@ -1,13 +1,13 @@
 package info.bowkett.abc.shell;
 
 import info.bowkett.abc.commands.*;
-import info.bowkett.abc.dal.InMemoryTimelineRepository;
-import info.bowkett.abc.dal.InMemoryUserRepository;
+import info.bowkett.abc.dal.*;
 import org.junit.Test;
 import org.junit.Before;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
 
 /**
  * CommandParser Tester.
@@ -22,7 +22,9 @@ public class CommandFactoryTest {
 
   @Before
   public void before() throws Exception {
-    commandFactory = new CommandFactory(new InMemoryUserRepository(), new InMemoryTimelineRepository());
+    commandFactory = new CommandFactory(mock(UserRepository.class),
+        mock(TimelineRepository.class),
+        mock(FollowRepository.class));
   }
 
   @Test

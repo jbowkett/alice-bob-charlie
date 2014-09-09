@@ -68,18 +68,9 @@ public class Shell {
 
     command.execute(console);
 
-    if (command instanceof FollowCommand){
-      doFollow((FollowCommand) command, user);
-    }
-    else if (command instanceof WallCommand){
+    if (command instanceof WallCommand){
       doWall(user);
     }
-  }
-
-  private void doFollow(FollowCommand command, User user) {
-    final String toFollow = command.getUserNameBeingFollowed();
-    final User userToFollow = userRepo.get(toFollow);
-    followRepo.addFollowing(user, userToFollow);
   }
 
   private void doWall(User user) {

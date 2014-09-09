@@ -1,6 +1,7 @@
 package info.bowkett.abc.shell;
 
 import info.bowkett.abc.commands.*;
+import info.bowkett.abc.dal.FollowRepository;
 import info.bowkett.abc.dal.TimelineRepository;
 import info.bowkett.abc.dal.UserRepository;
 
@@ -17,10 +18,12 @@ public class CommandFactory {
   private static final String WALL = "wall";
   private final UserRepository userRepo;
   private final TimelineRepository timelineRepo;
+  private final FollowRepository followRepo;
 
-  public CommandFactory(UserRepository userRepo, TimelineRepository timelineRepo) {
+  public CommandFactory(UserRepository userRepo, TimelineRepository timelineRepo, FollowRepository followRepo) {
     this.userRepo = userRepo;
     this.timelineRepo = timelineRepo;
+    this.followRepo = followRepo;
   }
 
 
@@ -40,7 +43,7 @@ public class CommandFactory {
       return new WallCommand(userName);
     }
     else if (followCommand(words)) {
-      return new FollowCommand(userName, words[2]);
+      return new FollowCommand(userName, words[2], userRepo, followRepo);
     }
     else if (postCommand(words)) {
       final String[] postParts = shellCommand.split("->");
