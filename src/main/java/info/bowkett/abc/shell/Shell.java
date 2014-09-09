@@ -70,7 +70,7 @@ public class Shell {
     if (command instanceof PostCommand){
       doPost((PostCommand) command, user);
     }
-    else if (command instanceof ViewCommand){
+    else if (command instanceof ReadCommand){
       doView(user);
     }
     else if (command instanceof FollowCommand){

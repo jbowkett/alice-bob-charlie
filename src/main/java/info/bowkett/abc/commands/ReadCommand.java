@@ -1,13 +1,13 @@
 package info.bowkett.abc.commands;
 
 /**
- * View user's posts shell command
+ * Read user's posts shell command
  * Created by jbowkett on 30/08/2014.
  */
-public class ViewCommand implements Command {
+public class ReadCommand implements Command {
   private final String userName;
 
-  public ViewCommand(String userName) {
+  public ReadCommand(String userName) {
     this.userName = userName;
   }
 

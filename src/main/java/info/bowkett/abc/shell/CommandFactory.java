@@ -24,7 +24,7 @@ public class CommandFactory {
     final String userName = words[0].trim();
 
     if (viewCommand(words)) {
-      return new ViewCommand(userName);
+      return new ReadCommand(userName);
     }
     else if (wallCommand(words)) {
       return new WallCommand(userName);

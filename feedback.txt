@@ -25,6 +25,7 @@ would need to be changed if a new command is added or a command is removed.
 
 
 
+
 CommandParser: This should be the only (factory) class that knows about different
 commands. The rest of the application should only deal with the Command
 interface (with no instanceof or casting).
@@ -42,13 +43,11 @@ structures. It should have the respective behaviour (currently on Shell class).
 If done like described here and above, there wouldn’t be a need to have a
 public method to return the user name.
 
+
+
 Repositories: No need for 3 repositories. A single repository with a single
 internal data structure would be enough to get all the data you need for each
 method (read, wall).
-
-“View” command: Slightly deviation from the spec, that says “Read”. View may be
-a better name but that should be discussed with the Product Owner so business
-and code can keep a ubiquitous language (DDD).
 
 OrderedPosts: Is this a domain class? This looks to me a thing that a repository
 should do for you when asking for the wall posts.

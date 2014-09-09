@@ -32,7 +32,7 @@ public class CommandFactoryTest {
   @Test
   public void testSubmitUserCommandYieldsAViewCommand() throws Exception {
     final Command com = commandFactory.getCommand("Alice");
-    assertTrue(com instanceof ViewCommand);
+    assertTrue(com instanceof ReadCommand);
   }
 
   @Test
