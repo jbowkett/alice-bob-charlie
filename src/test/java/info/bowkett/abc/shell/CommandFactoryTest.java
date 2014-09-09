@@ -1,6 +1,8 @@
 package info.bowkett.abc.shell;
 
 import info.bowkett.abc.commands.*;
+import info.bowkett.abc.dal.InMemoryTimelineRepository;
+import info.bowkett.abc.dal.InMemoryUserRepository;
 import org.junit.Test;
 import org.junit.Before;
 
@@ -20,7 +22,7 @@ public class CommandFactoryTest {
 
   @Before
   public void before() throws Exception {
-    commandFactory = new CommandFactory();
+    commandFactory = new CommandFactory(new InMemoryUserRepository(), new InMemoryTimelineRepository());
   }
 
   @Test

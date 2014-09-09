@@ -67,10 +67,10 @@ public class Shell {
   public void submit(String shellCommand) {
     final Command command = parser.getCommand(shellCommand);
     final User user = userRepo.get(command.getUserName());
-    if (command instanceof PostCommand){
-      doPost((PostCommand) command, user);
-    }
-    else if (command instanceof ReadCommand){
+
+    command.execute();
+
+    if (command instanceof ReadCommand){
       doView(user);
     }
     else if (command instanceof FollowCommand){
@@ -79,11 +79,6 @@ public class Shell {
     else if (command instanceof WallCommand){
       doWall(user);
     }
-  }
-
-  private void doPost(PostCommand command, User user) {
-    final String text = command.getText();
-    timelineRepo.get(user).add(new Post(user, text));
   }
 
   private void doView(User user) {

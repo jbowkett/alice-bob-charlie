@@ -12,6 +12,11 @@ public class WallCommand implements Command {
   }
 
   @Override
+  public void execute() {
+
+  }
+
+  @Override
   public String getUserName() {
     return userName;
   }

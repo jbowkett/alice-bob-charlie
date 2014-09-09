@@ -26,9 +26,9 @@ public class StepDefinitions {
   private UserRepository userRepo;
 
   public StepDefinitions() {
-    final CommandFactory commandFactory = new CommandFactory();
     this.userRepo = new InMemoryUserRepository();
     timelineRepo = new InMemoryTimelineRepository();
+    final CommandFactory commandFactory = new CommandFactory(userRepo, timelineRepo);
     final Console console = new Console(new Timeformat());
     consoleSpy = spy(console);
     followRepo = new InMemoryFollowRepository();

@@ -6,6 +6,9 @@ package info.bowkett.abc.commands;
  * Created by jbowkett on 29/08/2014.
  */
 public interface Command {
+
+  void execute();
+
   /**
    * @return the userName of the user the command pertains to
    */

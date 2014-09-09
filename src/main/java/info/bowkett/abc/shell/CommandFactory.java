@@ -1,6 +1,8 @@
 package info.bowkett.abc.shell;
 
 import info.bowkett.abc.commands.*;
+import info.bowkett.abc.dal.TimelineRepository;
+import info.bowkett.abc.dal.UserRepository;
 
 /**
  * Parses commands as specified in the different feature files.
@@ -13,6 +15,14 @@ public class CommandFactory {
   private static final String FOLLOWS = "follows";
   private static final String POST = "->";
   private static final String WALL = "wall";
+  private final UserRepository userRepo;
+  private final TimelineRepository timelineRepo;
+
+  public CommandFactory(UserRepository userRepo, TimelineRepository timelineRepo) {
+    this.userRepo = userRepo;
+    this.timelineRepo = timelineRepo;
+  }
+
 
   /**
    * @param shellCommand the line given at the shell prompt
@@ -34,7 +44,7 @@ public class CommandFactory {
     }
     else if (postCommand(words)) {
       final String[] postParts = shellCommand.split("->");
-      return new PostCommand(userName, postParts[1].trim());
+      return new PostCommand(userName, postParts[1].trim(), userRepo, timelineRepo);
     }
     else {
       throw new IllegalArgumentException(shellCommand);

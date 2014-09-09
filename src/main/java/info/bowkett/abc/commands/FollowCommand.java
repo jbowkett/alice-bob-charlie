@@ -14,6 +14,11 @@ public class FollowCommand implements Command{
   }
 
   @Override
+  public void execute() {
+
+  }
+
+  @Override
   public String getUserName() {
     return userNameDoingFollowing;
   }
