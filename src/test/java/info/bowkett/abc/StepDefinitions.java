@@ -33,7 +33,7 @@ public class StepDefinitions {
     final CommandFactory commandFactory = new CommandFactory(userRepo, timelineRepo, followRepo, wallFactory);
     final Console console = new Console(new Timeformat());
     consoleSpy = spy(console);
-    shell = new Shell(commandFactory, userRepo, timelineRepo, consoleSpy, followRepo, wallFactory);
+    shell = new Shell(commandFactory, consoleSpy);
   }
 
   @When("^\"(.*?)\" posts \"(.*?)\"$")

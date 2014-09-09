@@ -29,7 +29,7 @@ public class Main {
     final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
     final CommandFactory commandFactory = new CommandFactory(userRepo, timelineRepo, followRepo, wallFactory);
     final Console console = new Console(new Timeformat());
-    final Shell shell = new Shell(commandFactory, userRepo, timelineRepo, console, followRepo, wallFactory);
+    final Shell shell = new Shell(commandFactory, console);
     new Main(shell).startShell();
   }
 }

@@ -17,21 +17,11 @@ import java.util.Scanner;
  */
 public class Shell {
   private final CommandFactory parser;
-  private UserRepository userRepo;
-  private final TimelineRepository timelineRepo;
   private final Console console;
-  private final FollowRepository followRepo;
-  private final WallFactory wallFactory;
 
-  public Shell(CommandFactory parser, UserRepository userRepo,
-               TimelineRepository timelineRepo, Console console,
-               FollowRepository followRepo, WallFactory wallFactory) {
+  public Shell(CommandFactory parser, Console console) {
     this.parser = parser;
-    this.userRepo = userRepo;
-    this.timelineRepo = timelineRepo;
     this.console = console;
-    this.followRepo = followRepo;
-    this.wallFactory = wallFactory;
   }
 
   /**
@@ -64,7 +54,6 @@ public class Shell {
    */
   public void submit(String shellCommand) {
     final Command command = parser.getCommand(shellCommand);
-    final User user = userRepo.get(command.getUserName());
     command.execute(console);
   }
 }
