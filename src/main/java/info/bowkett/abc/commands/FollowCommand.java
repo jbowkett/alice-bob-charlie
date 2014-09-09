@@ -1,5 +1,7 @@
 package info.bowkett.abc.commands;
 
+import info.bowkett.abc.shell.Console;
+
 /**
  * Follow/subscribe command issued in the shell
  * Created by jbowkett on 31/08/2014.
@@ -14,7 +16,7 @@ public class FollowCommand implements Command{
   }
 
   @Override
-  public void execute() {
+  public void execute(Console console) {
 
   }
 

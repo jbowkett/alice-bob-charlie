@@ -4,6 +4,7 @@ import info.bowkett.abc.dal.TimelineRepository;
 import info.bowkett.abc.dal.UserRepository;
 import info.bowkett.abc.domain.Post;
 import info.bowkett.abc.domain.User;
+import info.bowkett.abc.shell.Console;
 
 /**
  * Post message shell command
@@ -23,7 +24,7 @@ public class PostCommand implements Command {
   }
 
   @Override
-  public void execute(){
+  public void execute(Console console){
     final User user = userRepo.get(userName);
     timelineRepo.get(user).add(new Post(user, postText));
   }

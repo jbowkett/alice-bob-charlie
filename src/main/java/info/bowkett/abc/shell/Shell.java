@@ -4,8 +4,6 @@ import info.bowkett.abc.commands.*;
 import info.bowkett.abc.dal.FollowRepository;
 import info.bowkett.abc.dal.TimelineRepository;
 import info.bowkett.abc.dal.UserRepository;
-import info.bowkett.abc.domain.Post;
-import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.domain.Wall;
 
@@ -68,27 +66,14 @@ public class Shell {
     final Command command = parser.getCommand(shellCommand);
     final User user = userRepo.get(command.getUserName());
 
-    command.execute();
+    command.execute(console);
 
-    if (command instanceof ReadCommand){
-      doView(user);
-    }
-    else if (command instanceof FollowCommand){
+    if (command instanceof FollowCommand){
       doFollow((FollowCommand) command, user);
     }
     else if (command instanceof WallCommand){
       doWall(user);
     }
-  }
-
-  private void doView(User user) {
-    final Timeline timeline = timelineRepo.get(user);
-    timeline.forEachRecentFirst(post -> {
-      console.print(post.getText())
-          .print(" ")
-          .timestamp(post.getTimestamp())
-          .println();
-    });
   }
 
   private void doFollow(FollowCommand command, User user) {

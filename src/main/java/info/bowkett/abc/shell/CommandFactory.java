@@ -34,7 +34,7 @@ public class CommandFactory {
     final String userName = words[0].trim();
 
     if (viewCommand(words)) {
-      return new ReadCommand(userName);
+      return new ReadCommand(userName, timelineRepo, userRepo);
     }
     else if (wallCommand(words)) {
       return new WallCommand(userName);

@@ -1,5 +1,7 @@
 package info.bowkett.abc.commands;
 
+import info.bowkett.abc.shell.Console;
+
 /**
  * Wall shell command
  * Created by jbowkett on 31/08/2014.
@@ -12,7 +14,7 @@ public class WallCommand implements Command {
   }
 
   @Override
-  public void execute() {
+  public void execute(Console console) {
 
   }
 
