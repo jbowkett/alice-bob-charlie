@@ -18,11 +18,9 @@ public class CommandFactory {
   private static final String POST = "->";
   private static final String WALL = "wall";
   private final DataRepository dataRepository;
-  private final WallFactory wallFactory;
 
-  public CommandFactory(DataRepository dataRepository, WallFactory wallFactory) {
+  public CommandFactory(DataRepository dataRepository) {
     this.dataRepository = dataRepository;
-    this.wallFactory = wallFactory;
   }
 
 
@@ -39,7 +37,7 @@ public class CommandFactory {
       return new ReadCommand(userName, dataRepository);
     }
     else if (wallCommand(words)) {
-      return new WallCommand(userName, dataRepository, wallFactory);
+      return new WallCommand(userName, dataRepository);
     }
     else if (followCommand(words)) {
       return new FollowCommand(userName, words[2], dataRepository);

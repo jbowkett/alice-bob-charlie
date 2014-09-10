@@ -26,9 +26,9 @@ public class Main {
     final UserRepository userRepo = new InMemoryUserRepository();
     final TimelineRepository timelineRepo = new InMemoryTimelineRepository();
     final FollowRepository followRepo = new InMemoryFollowRepository();
-    final DataRepository dataRepo = new InMemoryDataRepository(userRepo, timelineRepo, followRepo);
     final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
-    final CommandFactory commandFactory = new CommandFactory(dataRepo, wallFactory);
+    final DataRepository dataRepo = new InMemoryDataRepository(userRepo, timelineRepo, followRepo, wallFactory);
+    final CommandFactory commandFactory = new CommandFactory(dataRepo);
     final Console console = new Console(new Timeformat());
     final Shell shell = new Shell(commandFactory, console);
     new Main(shell).startShell();

@@ -13,18 +13,16 @@ import info.bowkett.abc.shell.WallFactory;
 public class WallCommand implements Command {
   private final String userName;
   private final DataRepository dataRepository;
-  private final WallFactory wallFactory;
 
-  public WallCommand(String userName, DataRepository dataRepository, WallFactory wallFactory) {
+  public WallCommand(String userName, DataRepository dataRepository) {
     this.userName = userName;
     this.dataRepository = dataRepository;
-    this.wallFactory = wallFactory;
   }
 
   @Override
   public void execute(Console console) {
     final User user = dataRepository.getUser(userName);
-    final Wall wall = wallFactory.getWall(user);
+    final Wall wall = dataRepository.getWall(user);
     wall.forEachRecentFirst(post -> {
       console
           .print(post.getUser().getName() + " - " + post.getText())
