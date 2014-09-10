@@ -3,9 +3,6 @@
 
 Shell (class and package): Not a domain name—too technical.
 
-
-
-
 Repositories: No need for 3 repositories. A single repository with a single
 internal data structure would be enough to get all the data you need for each
 method (read, wall).

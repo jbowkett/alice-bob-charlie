@@ -1,6 +1,7 @@
 package info.bowkett.abc.shell;
 
 import info.bowkett.abc.commands.*;
+import info.bowkett.abc.dal.DataRepository;
 import info.bowkett.abc.dal.FollowRepository;
 import info.bowkett.abc.dal.TimelineRepository;
 import info.bowkett.abc.dal.UserRepository;
@@ -16,15 +17,11 @@ public class CommandFactory {
   private static final String FOLLOWS = "follows";
   private static final String POST = "->";
   private static final String WALL = "wall";
-  private final UserRepository userRepo;
-  private final TimelineRepository timelineRepo;
-  private final FollowRepository followRepo;
+  private final DataRepository dataRepository;
   private final WallFactory wallFactory;
 
-  public CommandFactory(UserRepository userRepo, TimelineRepository timelineRepo, FollowRepository followRepo, WallFactory wallFactory) {
-    this.userRepo = userRepo;
-    this.timelineRepo = timelineRepo;
-    this.followRepo = followRepo;
+  public CommandFactory(DataRepository dataRepository, WallFactory wallFactory) {
+    this.dataRepository = dataRepository;
     this.wallFactory = wallFactory;
   }
 
@@ -39,17 +36,17 @@ public class CommandFactory {
     final String userName = words[0].trim();
 
     if (viewCommand(words)) {
-      return new ReadCommand(userName, timelineRepo, userRepo);
+      return new ReadCommand(userName, dataRepository);
     }
     else if (wallCommand(words)) {
-      return new WallCommand(userName, userRepo, wallFactory);
+      return new WallCommand(userName, dataRepository, wallFactory);
     }
     else if (followCommand(words)) {
-      return new FollowCommand(userName, words[2], userRepo, followRepo);
+      return new FollowCommand(userName, words[2], dataRepository);
     }
     else if (postCommand(words)) {
       final String[] postParts = shellCommand.split("->");
-      return new PostCommand(userName, postParts[1].trim(), userRepo, timelineRepo);
+      return new PostCommand(userName, postParts[1].trim(), dataRepository);
     }
     else {
       throw new IllegalArgumentException(shellCommand);

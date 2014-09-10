@@ -22,11 +22,7 @@ public class CommandFactoryTest {
 
   @Before
   public void before() throws Exception {
-    commandFactory = new CommandFactory(
-        mock(UserRepository.class),
-        mock(TimelineRepository.class),
-        mock(FollowRepository.class),
-        mock(WallFactory.class));
+    commandFactory = new CommandFactory(mock(DataRepository.class), mock(WallFactory.class));
   }
 
   @Test

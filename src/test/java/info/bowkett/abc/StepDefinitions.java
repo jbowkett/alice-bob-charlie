@@ -30,7 +30,8 @@ public class StepDefinitions {
     timelineRepo = new InMemoryTimelineRepository();
     followRepo = new InMemoryFollowRepository();
     final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
-    final CommandFactory commandFactory = new CommandFactory(userRepo, timelineRepo, followRepo, wallFactory);
+    final DataRepository dataRepo = new InMemoryDataRepository(userRepo, timelineRepo, followRepo);
+    final CommandFactory commandFactory = new CommandFactory(dataRepo, wallFactory);
     final Console console = new Console(new Timeformat());
     consoleSpy = spy(console);
     shell = new Shell(commandFactory, consoleSpy);

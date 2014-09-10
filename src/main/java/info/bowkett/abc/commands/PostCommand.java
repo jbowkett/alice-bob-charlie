@@ -1,5 +1,6 @@
 package info.bowkett.abc.commands;
 
+import info.bowkett.abc.dal.DataRepository;
 import info.bowkett.abc.dal.TimelineRepository;
 import info.bowkett.abc.dal.UserRepository;
 import info.bowkett.abc.domain.Post;
@@ -13,20 +14,18 @@ import info.bowkett.abc.shell.Console;
 public class PostCommand implements Command {
   private final String userName;
   private final String postText;
-  private final UserRepository userRepo;
-  private TimelineRepository timelineRepo;
+  private final DataRepository dataRepository;
 
-  public PostCommand(String user, String postText, UserRepository userRepo, TimelineRepository timelineRepo) {
+  public PostCommand(String user, String postText, DataRepository dataRepository) {
     this.userName = user;
     this.postText = postText;
-    this.userRepo = userRepo;
-    this.timelineRepo = timelineRepo;
+    this.dataRepository = dataRepository;
   }
 
   @Override
   public void execute(Console console){
-    final User user = userRepo.get(userName);
-    timelineRepo.get(user).add(new Post(user, postText));
+    final User user = dataRepository.getUser(userName);
+    dataRepository.getTimeline(user).add(new Post(user, postText));
   }
 
   public String getText() {
