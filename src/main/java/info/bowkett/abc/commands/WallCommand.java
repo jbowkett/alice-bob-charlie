@@ -4,7 +4,6 @@ import info.bowkett.abc.dal.DataRepository;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.domain.Wall;
 import info.bowkett.abc.shell.Console;
-import info.bowkett.abc.shell.WallFactory;
 
 /**
  * Wall shell command

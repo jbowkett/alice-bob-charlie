@@ -1,8 +1,6 @@
 package info.bowkett.abc.commands;
 
 import info.bowkett.abc.dal.DataRepository;
-import info.bowkett.abc.dal.TimelineRepository;
-import info.bowkett.abc.dal.UserRepository;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.shell.Console;
