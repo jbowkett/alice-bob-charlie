@@ -15,10 +15,6 @@ away if the “only” repository had a better data structure. Maybe the User co
 have a list of users he or she follows? That way, you could get all the posts
 from the user and followed users, add them to the same list, and sort them.
 
-Timeline: Public methods size() and anyMatch() just exist for testing purpose.
-That is a smell. It tells us that the design is not quite right or that we
-should be looking at other side effects in order to test the desired behaviour.
-
 Wall: Probably unnecessary if the repository could return a list posts, in the
 reverse chronological order for a given user (containing the list of followed
 users).

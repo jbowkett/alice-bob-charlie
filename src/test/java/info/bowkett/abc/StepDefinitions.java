@@ -3,11 +3,15 @@ package info.bowkett.abc;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import info.bowkett.abc.dal.*;
+import info.bowkett.abc.domain.Post;
 import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.shell.*;
 import org.mockito.InOrder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
@@ -49,7 +53,9 @@ public class StepDefinitions {
     final String userName = stripPosessive(posessive);
     final User user = userRepo.get(userName);
     final Timeline posts = timelineRepo.get(user);
-    assertTrue(posts.anyMatch(p -> p.getText().equals(post)));
+    final List<Post> extractedPosts = new ArrayList<>();
+    posts.forEachRecentFirst(extractedPosts::add);
+    assertTrue(extractedPosts.stream().anyMatch(p -> p.getText().equals(post)));
   }
 
   @Then("^\"(.*?)\" timeline contains (\\d+) posts$")
@@ -57,7 +63,9 @@ public class StepDefinitions {
     final String userName = stripPosessive(posessive);
     final User user = userRepo.get(userName);
     final Timeline timeline = timelineRepo.get(user);
-    assertEquals(expectedCount, timeline.size());
+    final List<Post> extractedPosts = new ArrayList<>();
+    timeline.forEachRecentFirst(extractedPosts::add);
+    assertEquals(expectedCount, extractedPosts.size());
   }
 
   @When("^reading the posts by \"(.*?)\"$")

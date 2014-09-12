@@ -22,14 +22,6 @@ class OrderedPosts {
     sortInTimestampOrder();
   }
 
-  int size() {
-    return posts.size();
-  }
-
-  boolean anyMatch(Predicate<? super Post> predicate){
-    return posts.stream().anyMatch(predicate);
-  }
-
   private void sortInTimestampOrder() {
     posts.sort((p1, p2) -> {
       final long difference = p2.getTimestamp() - p1.getTimestamp();
