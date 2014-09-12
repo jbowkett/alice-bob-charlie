@@ -38,10 +38,22 @@ public class CommandFactoryTest {
   }
 
   @Test
+  public void testWallYieldsWallCommand() throws Exception {
+    final Command com = commandFactory.getCommand("Bob wall");
+    assertTrue(com instanceof WallCommand);
+  }
+
+  @Test
   public void testFollowUserYieldsAFollowUserCommand() throws Exception {
     final Command com = commandFactory.getCommand("Alice follows Bob");
     assertTrue(com instanceof FollowCommand);
   }
+
+  @Test(expected = IllegalArgumentException.class)
+  public void testInvalidCommandYieldsException() {
+    commandFactory.getCommand("Bob wall-e");
+  }
+
 
   @Test
   public void testFollowUserCommandGetsPersonBeingFollowed() throws Exception {
@@ -50,20 +62,9 @@ public class CommandFactoryTest {
   }
 
   @Test
-  public void testFollowUserCommandGetsPersonDoingFollowed() throws Exception {
+  public void testFollowUserCommandGetsPersonDoingFollowing() throws Exception {
     final Command com = commandFactory.getCommand("Alice follows Bob");
     assertEquals("Alice", ((FollowCommand)com).getUserName());
-  }
-
-  @Test
-  public void testWallYieldsWallCommand() throws Exception {
-    final Command com = commandFactory.getCommand("Bob wall");
-    assertTrue(com instanceof WallCommand);
-  }
-
-  @Test(expected = IllegalArgumentException.class)
-  public void testInvalidCommandYieldsException() {
-    commandFactory.getCommand("Bob wall-e");
   }
 
   @Test
