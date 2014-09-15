@@ -3,21 +3,7 @@
 
 Shell (class and package): Not a domain name—too technical.
 
-Repositories: No need for 3 repositories. A single repository with a single
-internal data structure would be enough to get all the data you need for each
-method (read, wall).
 
-OrderedPosts: Is this a domain class? This looks to me a thing that a repository
-should do for you when asking for the wall posts.
-
-Subscriptions: This word does not exist in the domain language. This would go
-away if the “only” repository had a better data structure. Maybe the User could
-have a list of users he or she follows? That way, you could get all the posts
-from the user and followed users, add them to the same list, and sort them.
-
-Wall: Probably unnecessary if the repository could return a list posts, in the
-reverse chronological order for a given user (containing the list of followed
-users).
 
 dal package: Did you mean “dao” (Data Access Object)? You should not mix DAO
 and Repositories. Although similar things, they represent different concepts.

@@ -4,7 +4,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import info.bowkett.abc.dal.*;
 import info.bowkett.abc.domain.Post;
-import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.shell.*;
@@ -12,8 +11,8 @@ import org.mockito.InOrder;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -33,8 +32,7 @@ public class StepDefinitions {
     this.userRepo = new InMemoryUserRepository();
     timelineRepo = new InMemoryTimelineRepository();
     followRepo = new InMemoryFollowRepository();
-    final WallFactory wallFactory = new WallFactory(followRepo, timelineRepo);
-    final DataRepository dataRepo = new InMemoryDataRepository(userRepo, timelineRepo, followRepo, wallFactory);
+    final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);
     final CommandFactory commandFactory = new CommandFactory(dataRepo);
     final Console console = new Console(new Timeformat());
     consoleSpy = spy(console);
@@ -79,7 +77,7 @@ public class StepDefinitions {
     final InOrder inOrder = inOrder(consoleSpy);
     for (String line : lines) {
       inOrder.verify(consoleSpy).print(line);
-//      inOrder.verify(consoleSpy).timestamp(anyLong());
+      inOrder.verify(consoleSpy).timestamp(anyLong());
     }
   }
 
@@ -88,7 +86,7 @@ public class StepDefinitions {
     final String follow = follow(userNameDoingFollowing, userNameBeingFollowed);
     shell.submit(follow);
     final User userDoingFollowing = userRepo.get(userNameDoingFollowing);
-    final Subscriptions usersBeingFollowed = followRepo.getSubscriptionsFor(userDoingFollowing);
+    final Set<User> usersBeingFollowed = followRepo.getUsersFollowedBy(userDoingFollowing);
     assertTrue(usersBeingFollowed.stream().anyMatch(u -> u.getName().equals(userNameBeingFollowed)));
   }
 

@@ -1,8 +1,10 @@
 package info.bowkett.abc.dal;
 
-import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.User;
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -24,7 +26,20 @@ public class InMemoryFollowRepository implements FollowRepository {
   }
 
   @Override
-  public Subscriptions getSubscriptionsFor(User userDoingFollowing) {
-    return userToSubscriptionsMap.getOrDefault(userDoingFollowing, new Subscriptions());
+  public Set<User> getUsersFollowedBy(User userDoingFollowing) {
+    final Subscriptions subscriptions = userToSubscriptionsMap.getOrDefault(userDoingFollowing, new Subscriptions());
+    return subscriptions.users();
+  }
+
+  private class Subscriptions {
+    private final Set<User> users = new HashSet<>();
+
+    private void add(User toFollow){
+      users.add(toFollow);
+    }
+
+    private Set<User> users() {
+      return Collections.unmodifiableSet(users);
+    }
   }
 }

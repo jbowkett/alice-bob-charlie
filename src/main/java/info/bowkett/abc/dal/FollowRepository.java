@@ -1,7 +1,8 @@
 package info.bowkett.abc.dal;
 
-import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.User;
+
+import java.util.Set;
 
 /**
  * Repository for storing and retrieving who a user has subscribed/followed.
@@ -22,5 +23,5 @@ public interface FollowRepository {
    * @param userDoingFollowing
    * @return a Subscription for the user, which may be empty, but is never null
    */
-  public Subscriptions getSubscriptionsFor(User userDoingFollowing);
+  public Set<User> getUsersFollowedBy(User userDoingFollowing);
 }

@@ -9,13 +9,13 @@ import java.util.function.Consumer;
  * Created by jbowkett on 01/09/2014.
  */
 public class Wall {
-  private final OrderedPosts wall = new OrderedPosts();
+  private final OrderedPosts wall;
+
+  public Wall(OrderedPosts wall) {
+    this.wall = wall;
+  }
 
   public void forEachRecentFirst(Consumer<Post> consumer){
     wall.forEachRecentFirst(consumer);
-  }
-
-  public void add(Post post) {
-    wall.add(post);
   }
 }
