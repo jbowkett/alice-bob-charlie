@@ -30,15 +30,11 @@ public class Shell {
    */
   public void startShell() {
     final Scanner in = new Scanner(System.in);
-    boolean quit = false;
     console.print("> ");
-    while (!quit && in.hasNext()) {
+    while (in.hasNext()) {
       final String currentLine = in.nextLine();
-      quit = currentLine.equalsIgnoreCase("quit");
-      if(!quit) {
-        submit(currentLine);
-        console.print("> ");
-      }
+      submit(currentLine);
+      console.print("> ");
     }
   }
 

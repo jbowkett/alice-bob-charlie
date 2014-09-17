@@ -33,7 +33,10 @@ public class CommandFactory {
     final String[] words = shellCommand.split(" ");
     final String userName = words[0].trim();
 
-    if (viewCommand(words)) {
+    if (quitCommand(shellCommand)){
+      return new QuitCommand();
+    }
+    else if (viewCommand(words)) {
       return new ReadCommand(userName, dataRepository);
     }
     else if (wallCommand(words)) {
@@ -49,6 +52,10 @@ public class CommandFactory {
     else {
       throw new IllegalArgumentException(shellCommand);
     }
+  }
+
+  private boolean quitCommand(String shellCommand) {
+    return shellCommand.equals("quit");
   }
 
   private boolean viewCommand(String[] words) {

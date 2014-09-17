@@ -48,6 +48,11 @@ public class CommandFactoryTest {
     final Command com = commandFactory.getCommand("Alice follows Bob");
     assertTrue(com instanceof FollowCommand);
   }
+  @Test
+  public void testQuitCommand() {
+    final Command command = commandFactory.getCommand("quit");
+    assertTrue(command instanceof QuitCommand);
+  }
 
   @Test(expected = IllegalArgumentException.class)
   public void testInvalidCommandYieldsException() {
@@ -64,7 +69,7 @@ public class CommandFactoryTest {
   @Test
   public void testFollowUserCommandGetsPersonDoingFollowing() throws Exception {
     final Command com = commandFactory.getCommand("Alice follows Bob");
-    assertEquals("Alice", ((FollowCommand)com).getUserName());
+    assertEquals("Alice", ((FollowCommand) com).getUserName());
   }
 
   @Test
