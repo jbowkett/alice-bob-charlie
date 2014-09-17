@@ -1,4 +1,4 @@
-package info.bowkett.abc.dal;
+package info.bowkett.abc.dao;
 
 import info.bowkett.abc.domain.User;
 

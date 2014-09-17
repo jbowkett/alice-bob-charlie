@@ -1,7 +1,7 @@
 package info.bowkett.abc.console;
 
 import info.bowkett.abc.commands.*;
-import info.bowkett.abc.dal.*;
+import info.bowkett.abc.dao.*;
 import org.junit.Test;
 import org.junit.Before;
 

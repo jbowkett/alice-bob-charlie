@@ -1,9 +1,8 @@
-package info.bowkett.abc.dal;
+package info.bowkett.abc.dao;
 
 import info.bowkett.abc.domain.User;
 import org.junit.Test;
 import org.junit.Before;
-import org.junit.After;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

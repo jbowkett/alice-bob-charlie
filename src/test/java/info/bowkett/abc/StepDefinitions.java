@@ -2,7 +2,7 @@ package info.bowkett.abc;
 
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import info.bowkett.abc.dal.*;
+import info.bowkett.abc.dao.*;
 import info.bowkett.abc.domain.Post;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
