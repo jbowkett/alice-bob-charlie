@@ -8,18 +8,18 @@ import info.bowkett.abc.shell.*;
  */
 public class Main {
 
-  private final Shell shell;
+  private final Console console;
 
-  public Main(Shell shell) {
-    this.shell = shell;
+  public Main(Console console) {
+    this.console = console;
   }
 
   private void startShell() {
-    shell.startShell();
+    console.startShell();
   }
 
   /**
-   * Main shell entry point
+   * Main console app entry point
    * @param argsAreIgnored
    */
   public static void main(String [] argsAreIgnored){
@@ -28,8 +28,7 @@ public class Main {
     final FollowRepository followRepo = new InMemoryFollowRepository();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);
     final CommandFactory commandFactory = new CommandFactory(dataRepo);
-    final Console console = new Console(new Timeformat());
-    final Shell shell = new Shell(commandFactory, console);
-    new Main(shell).startShell();
+    final Console console = new Console(new Timeformat(), commandFactory);
+    new Main(console).startShell();
   }
 }

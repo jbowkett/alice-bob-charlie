@@ -22,7 +22,6 @@ import static org.mockito.Mockito.*;
  */
 public class StepDefinitions {
 
-  private final Shell shell;
   private final TimelineRepository timelineRepo;
   private final Console consoleSpy;
   private final FollowRepository followRepo;
@@ -34,16 +33,15 @@ public class StepDefinitions {
     followRepo = new InMemoryFollowRepository();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);
     final CommandFactory commandFactory = new CommandFactory(dataRepo);
-    final Console console = new Console(new Timeformat());
+    final Console console = new Console(new Timeformat(), commandFactory);
     consoleSpy = spy(console);
-    shell = new Shell(commandFactory, consoleSpy);
   }
 
   @When("^\"(.*?)\" posts \"(.*?)\"$")
   public void posts(String userName, String message) throws Throwable {
     Thread.sleep(1000);
     final String post = post(userName, message);
-    shell.submit(post);
+    consoleSpy.submit(post);
   }
 
   @Then("^\"(.*?)\" timeline contains the post \"(.*?)\"$")
@@ -68,7 +66,7 @@ public class StepDefinitions {
 
   @When("^reading the posts by \"(.*?)\"$")
   public void reading_the_posts_by(String userName) throws Throwable {
-    shell.submit(userName);
+    consoleSpy.submit(userName);
   }
 
   @Then("^I see:$")
@@ -84,7 +82,7 @@ public class StepDefinitions {
   @When("^\"(.*?)\" follows \"(.*?)\"$")
   public void follows(String userNameDoingFollowing, String userNameBeingFollowed) throws Throwable {
     final String follow = follow(userNameDoingFollowing, userNameBeingFollowed);
-    shell.submit(follow);
+    consoleSpy.submit(follow);
     final User userDoingFollowing = userRepo.get(userNameDoingFollowing);
     final Set<User> usersBeingFollowed = followRepo.getUsersFollowedBy(userDoingFollowing);
     assertTrue(usersBeingFollowed.stream().anyMatch(u -> u.getName().equals(userNameBeingFollowed)));
@@ -92,7 +90,7 @@ public class StepDefinitions {
 
   @When("^\"(.*?)\" views their wall$")
   public void views_their_wall(String userName) throws Throwable {
-    shell.submit(userName + " wall");
+    consoleSpy.submit(userName + " wall");
   }
 
   String stripPosessive(String posessive) {

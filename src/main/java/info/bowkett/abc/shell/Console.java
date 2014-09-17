@@ -1,5 +1,9 @@
 package info.bowkett.abc.shell;
 
+import info.bowkett.abc.commands.Command;
+
+import java.util.Scanner;
+
 /**
  * Class representing console output.
  * Could also have handled console input, but did not want this class to
@@ -9,9 +13,11 @@ package info.bowkett.abc.shell;
 public class Console {
 
   private final Timeformat time;
+  private final CommandFactory commandFactory;
 
-  public Console(Timeformat time) {
+  public Console(Timeformat time, CommandFactory commandFactory) {
     this.time = time;
+    this.commandFactory = commandFactory;
   }
 
   public Console print(String post) {
@@ -31,5 +37,33 @@ public class Console {
 
   public Console println() {
     return print("\n");
+  }
+
+  /**
+   * Main interactive command shell
+   */
+  public void startShell() {
+    final Scanner in = new Scanner(System.in);
+    print("> ");
+    while (in.hasNext()) {
+      final String currentLine = in.nextLine();
+      submit(currentLine);
+      print("> ");
+    }
+  }
+
+  /**
+   * Parses the given string into a command instance decorated with all the
+   * details specified in shellCommand.
+   * The permissible commands are:
+   * <user> -> "A post"            = posting
+   * <user>                        = viewing the user's posts
+   * <user> wall                   = viewing the user's wall
+   * <user> follows <another user> = following another user
+   * @param shellCommand to parse
+   */
+  public void submit(String shellCommand) {
+    final Command command = commandFactory.getCommand(shellCommand);
+    command.execute(this);
   }
 }
