@@ -1,4 +1,4 @@
-package info.bowkett.abc.shell;
+package info.bowkett.abc.console;
 
 import info.bowkett.abc.commands.*;
 import info.bowkett.abc.dal.*;

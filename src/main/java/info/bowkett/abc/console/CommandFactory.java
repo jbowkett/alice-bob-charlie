@@ -1,10 +1,7 @@
-package info.bowkett.abc.shell;
+package info.bowkett.abc.console;
 
 import info.bowkett.abc.commands.*;
 import info.bowkett.abc.dal.DataRepository;
-import info.bowkett.abc.dal.FollowRepository;
-import info.bowkett.abc.dal.TimelineRepository;
-import info.bowkett.abc.dal.UserRepository;
 
 /**
  * Parses commands as specified in the different feature files.

@@ -6,7 +6,7 @@ import info.bowkett.abc.dal.*;
 import info.bowkett.abc.domain.Post;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
-import info.bowkett.abc.shell.*;
+import info.bowkett.abc.console.*;
 import org.mockito.InOrder;
 
 import java.util.ArrayList;

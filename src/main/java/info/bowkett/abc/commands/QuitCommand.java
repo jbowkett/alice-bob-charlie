@@ -1,6 +1,6 @@
 package info.bowkett.abc.commands;
 
-import info.bowkett.abc.shell.Console;
+import info.bowkett.abc.console.Console;
 
 /**
  * Created by jbowkett on 17/09/2014.

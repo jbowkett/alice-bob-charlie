@@ -1,6 +1,5 @@
-package info.bowkett.abc.shell;
+package info.bowkett.abc.console;
 
-import info.bowkett.abc.shell.Timeformat;
 import org.junit.Test;
 import org.junit.Before;
 

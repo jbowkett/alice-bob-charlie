@@ -2,7 +2,7 @@ package info.bowkett.abc.commands;
 
 import info.bowkett.abc.dal.DataRepository;
 import info.bowkett.abc.domain.User;
-import info.bowkett.abc.shell.Console;
+import info.bowkett.abc.console.Console;
 
 /**
  * Follow/subscribe command issued in the shell

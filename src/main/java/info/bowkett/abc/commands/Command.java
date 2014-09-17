@@ -1,7 +1,7 @@
 package info.bowkett.abc.commands;
 
 
-import info.bowkett.abc.shell.Console;
+import info.bowkett.abc.console.Console;
 
 /**
  * Command interface for commands issued in the shell

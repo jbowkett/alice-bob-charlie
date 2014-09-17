@@ -3,7 +3,7 @@ package info.bowkett.abc.commands;
 import info.bowkett.abc.dal.DataRepository;
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
-import info.bowkett.abc.shell.Console;
+import info.bowkett.abc.console.Console;
 
 /**
  * Read user's posts shell command

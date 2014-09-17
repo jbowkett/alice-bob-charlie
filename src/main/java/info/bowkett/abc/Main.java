@@ -1,7 +1,7 @@
 package info.bowkett.abc;
 
 import info.bowkett.abc.dal.*;
-import info.bowkett.abc.shell.*;
+import info.bowkett.abc.console.*;
 
 /**
  * Created by jbowkett on 27/08/2014.
