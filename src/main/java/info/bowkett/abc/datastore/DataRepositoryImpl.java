@@ -38,7 +38,7 @@ public class DataRepositoryImpl implements DataRepository {
   }
 
   @Override
-  public Wall getWall(User user) {
+  public Wall findWall(User user) {
     final Set<User> usersBeingFollowed = followDAO.getUsersFollowedBy(user);
     final Stream<Timeline> timelinesForOthers = usersBeingFollowed.stream().map(timelineDAO::get);
     final Timeline userTimeline = timelineDAO.get(user);

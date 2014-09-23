@@ -57,7 +57,7 @@ public class DataRepositoryImplTest {
 
 
   /**
-   * Method: getWall(User user)
+   * Method: findWall(User user)
    */
   @Test
   public void testGetWallIsOrderedCorrectlyWhenPostsAreOneSecondApartInNanoSeconds() throws Exception {
@@ -93,7 +93,7 @@ public class DataRepositoryImplTest {
   }
 
   private void when_viewingWallForAlice() {
-    final Wall wall = dataRepository.getWall(alice);
+    final Wall wall = dataRepository.findWall(alice);
     actualWall = new LinkedList<>();
     wall.forEachRecentFirst(actualWall::add);
   }

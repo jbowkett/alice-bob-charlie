@@ -14,5 +14,5 @@ public interface DataRepository {
 
   Timeline findTimeline(User user);
 
-  Wall getWall(User user);
+  Wall findWall(User user);
 }
