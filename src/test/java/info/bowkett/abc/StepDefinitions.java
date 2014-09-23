@@ -28,7 +28,7 @@ public class StepDefinitions {
   private UserDAO userRepo;
 
   public StepDefinitions() {
-    this.userRepo = new InMemoryUserDAO();
+    this.userRepo = new UserDAOInMemory();
     timelineRepo = new TimelineDAOInMemory();
     followRepo = new FollowDAOInMemory();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);
