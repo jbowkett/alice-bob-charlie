@@ -23,7 +23,8 @@ public class ReadCommand implements Command {
     final User user = dataRepository.getUser(userName);
     final Timeline timeline = dataRepository.getTimeline(user);
     timeline.forEachRecentFirst(post -> {
-      console.print(post.getText())
+      console
+          .print(post.getText())
           .print(" ")
           .timestamp(post.getTimestamp())
           .println();
