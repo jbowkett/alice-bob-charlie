@@ -30,7 +30,7 @@ public class StepDefinitions {
   public StepDefinitions() {
     this.userRepo = new InMemoryUserRepository();
     timelineRepo = new InMemoryTimelineRepository();
-    followRepo = new InMemoryFollowDAO();
+    followRepo = new FollowDAOInMemory();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);
     final CommandFactory commandFactory = new CommandFactory(dataRepo);
     final Console console = new Console(new Timeformat(), commandFactory);

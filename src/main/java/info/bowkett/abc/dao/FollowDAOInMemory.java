@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentMap;
  *
  * Created by jbowkett on 31/08/2014.
  */
-public class InMemoryFollowDAO implements FollowDAO {
+public class FollowDAOInMemory implements FollowDAO {
   private final ConcurrentMap<User, Subscriptions> userToSubscriptionsMap = new ConcurrentHashMap<>();
 
   @Override
