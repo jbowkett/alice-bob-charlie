@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentMap;
  *
  * Created by jbowkett on 30/08/2014.
  */
-public class InMemoryTimelineDAO implements TimelineDAO {
+public class TimelineDAOInMemory implements TimelineDAO {
   private final ConcurrentMap<User, Timeline> timelines = new ConcurrentHashMap<>();
 
   /**
