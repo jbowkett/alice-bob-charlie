@@ -48,7 +48,7 @@ public class StepDefinitions {
   public void timeline_contains_the_post(String posessive, String post) throws Throwable {
     final String userName = stripPosessive(posessive);
     final User user = userRepo.read(userName);
-    final Timeline posts = timelineRepo.get(user);
+    final Timeline posts = timelineRepo.read(user);
     final List<Post> extractedPosts = new ArrayList<>();
     posts.forEachRecentFirst(extractedPosts::add);
     assertTrue(extractedPosts.stream().anyMatch(p -> p.getText().equals(post)));
@@ -58,7 +58,7 @@ public class StepDefinitions {
   public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
     final String userName = stripPosessive(posessive);
     final User user = userRepo.read(userName);
-    final Timeline timeline = timelineRepo.get(user);
+    final Timeline timeline = timelineRepo.read(user);
     final List<Post> extractedPosts = new ArrayList<>();
     timeline.forEachRecentFirst(extractedPosts::add);
     assertEquals(expectedCount, extractedPosts.size());

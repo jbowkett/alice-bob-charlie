@@ -34,14 +34,14 @@ public class DataRepositoryImpl implements DataRepository {
 
   @Override
   public Timeline findTimeline(User user) {
-    return timelineDAO.get(user);
+    return timelineDAO.read(user);
   }
 
   @Override
   public Wall findWall(User user) {
     final Set<User> usersBeingFollowed = followDAO.getUsersFollowedBy(user);
-    final Stream<Timeline> timelinesForOthers = usersBeingFollowed.stream().map(timelineDAO::get);
-    final Timeline userTimeline = timelineDAO.get(user);
+    final Stream<Timeline> timelinesForOthers = usersBeingFollowed.stream().map(timelineDAO::read);
+    final Timeline userTimeline = timelineDAO.read(user);
     final OrderedPosts wallPosts = new OrderedPosts();
     timelinesForOthers.forEach(timeline -> timeline.forEachRecentFirst(wallPosts::add));
     userTimeline.forEachRecentFirst(wallPosts::add);

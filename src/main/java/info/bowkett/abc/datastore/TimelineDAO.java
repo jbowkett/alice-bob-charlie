@@ -15,5 +15,5 @@ public interface TimelineDAO {
    * @param user
    * @return a timeline (never null)
    */
-  public Timeline get(User user);
+  public Timeline read(User user);
 }

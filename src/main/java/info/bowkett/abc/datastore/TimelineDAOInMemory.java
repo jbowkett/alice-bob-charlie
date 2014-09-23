@@ -20,7 +20,7 @@ public class TimelineDAOInMemory implements TimelineDAO {
    * @return a timeline (never null)
    */
   @Override
-  public Timeline get(User user) {
+  public Timeline read(User user) {
     timelines.putIfAbsent(user, new Timeline());
     return timelines.get(user);
   }

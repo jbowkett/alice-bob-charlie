@@ -51,8 +51,8 @@ public class DataRepositoryImplTest {
     // could use mocks here, but we are starting to disappear into deep mocking
     aliceTimeline = new Timeline();
     bobTimeline = new Timeline();
-    when(timelineDAO.get(alice)).thenReturn(aliceTimeline);
-    when(timelineDAO.get(bob)).thenReturn(bobTimeline);
+    when(timelineDAO.read(alice)).thenReturn(aliceTimeline);
+    when(timelineDAO.read(bob)).thenReturn(bobTimeline);
   }
 
 
