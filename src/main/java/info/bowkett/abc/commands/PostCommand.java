@@ -22,7 +22,7 @@ public class PostCommand implements Command {
 
   @Override
   public void execute(Console console){
-    final User user = dataRepository.getUser(userName);
+    final User user = dataRepository.findUser(userName);
     dataRepository.getTimeline(user).add(new Post(user, postText));
   }
 

@@ -8,7 +8,7 @@ import info.bowkett.abc.domain.Wall;
  * Created by jbowkett on 10/09/2014.
  */
 public interface DataRepository {
-  User getUser(String userName);
+  User findUser(String userName);
 
   void addFollowing(User userDoingFollowing, User userToFollow);
 

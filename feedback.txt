@@ -1,16 +1,17 @@
 
 **Improvements**
 
-Shell (class and package): Not a domain name—too technical.
-
 
 
 dal package: Did you mean “dao” (Data Access Object)? You should not mix DAO
 and Repositories. Although similar things, they represent different concepts.
 DAO is a Core J2EE Pattern and Repository is a DDD building block, which treat
-entities/aggregates as a collection. Subtle but different. In a DAO you would
-have “create”, “read”, “delete”, etc. In a Repository you would have “add”,
-“find”, “remove”.
+entities/aggregates as a collection. Subtle but different.
+
+
+In a DAO you would have “create”, “read”, “delete”, etc.
+
+In a Repository you would have “add”, “find”, “remove”.
 
 
 

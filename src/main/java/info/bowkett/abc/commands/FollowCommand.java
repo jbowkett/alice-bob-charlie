@@ -22,8 +22,8 @@ public class FollowCommand implements Command{
 
   @Override
   public void execute(Console console) {
-    final User user = dataRepository.getUser(userNameDoingFollowing);
-    final User userToFollow = dataRepository.getUser(userNameBeingFollowed);
+    final User user = dataRepository.findUser(userNameDoingFollowing);
+    final User userToFollow = dataRepository.findUser(userNameBeingFollowed);
     dataRepository.addFollowing(user, userToFollow);
   }
 

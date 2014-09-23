@@ -20,7 +20,7 @@ public class WallCommand implements Command {
 
   @Override
   public void execute(Console console) {
-    final User user = dataRepository.getUser(userName);
+    final User user = dataRepository.findUser(userName);
     final Wall wall = dataRepository.getWall(user);
     wall.forEachRecentFirst(post -> {
       console

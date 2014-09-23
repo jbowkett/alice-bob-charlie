@@ -23,7 +23,7 @@ public class DataRepositoryImpl implements DataRepository {
   }
 
   @Override
-  public User getUser(String userName) {
+  public User findUser(String userName) {
     return userDAO.get(userName);
   }
 
