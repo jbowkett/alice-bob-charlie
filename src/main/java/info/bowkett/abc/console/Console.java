@@ -44,12 +44,16 @@ public class Console {
    */
   public void startShell() {
     final Scanner in = new Scanner(System.in);
-    print("> ");
+    printPrompt();
     while (in.hasNext()) {
       final String currentLine = in.nextLine();
       submit(currentLine);
-      print("> ");
+      printPrompt();
     }
+  }
+
+  private void printPrompt() {
+    print("> ");
   }
 
   /**

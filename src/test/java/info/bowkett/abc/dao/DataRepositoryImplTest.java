@@ -64,10 +64,10 @@ public class DataRepositoryImplTest {
     // posts are 1 second apart in nanoseconds - as this gave rise to the ordering bug
 
     given_AliceFollowsBob();
-    given_APostByAlice(1410799220544109000l);
-    given_APostByAlice(1410799221544109000l);
-    given_APostByBob(1410799222544109000l);
-    given_APostByAlice(1410799223544109000l);
+    given_APostByAliceAt(1410799220544109000l);
+    given_APostByAliceAt(1410799221544109000l);
+    given_APostByBobAt(1410799222544109000l);
+    given_APostByAliceAt(1410799223544109000l);
 
     when_viewingWallForAlice();
     then_thePostsAreInterleavedInChronologicalOrder();
@@ -77,11 +77,11 @@ public class DataRepositoryImplTest {
     assertEquals(expectedWall, actualWall);
   }
 
-  private void given_APostByAlice(long timestamp) {
+  private void given_APostByAliceAt(long timestamp) {
     aliceTimeline.add(postBy(alice, timestamp));
   }
 
-  private void given_APostByBob(long timestamp) {
+  private void given_APostByBobAt(long timestamp) {
     bobTimeline.add(postBy(bob, timestamp));
   }
 
