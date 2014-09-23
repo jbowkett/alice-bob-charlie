@@ -1,6 +1,6 @@
 package info.bowkett.abc;
 
-import info.bowkett.abc.dao.*;
+import info.bowkett.abc.datastore.*;
 import info.bowkett.abc.console.*;
 
 /**

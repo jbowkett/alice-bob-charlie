@@ -1,6 +1,6 @@
 package info.bowkett.abc.commands;
 
-import info.bowkett.abc.dao.DataRepository;
+import info.bowkett.abc.datastore.DataRepository;
 import info.bowkett.abc.domain.Post;
 import info.bowkett.abc.domain.User;
 import info.bowkett.abc.console.Console;

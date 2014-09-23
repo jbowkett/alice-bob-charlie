@@ -1,7 +1,7 @@
 package info.bowkett.abc.console;
 
 import info.bowkett.abc.commands.*;
-import info.bowkett.abc.dao.DataRepository;
+import info.bowkett.abc.datastore.DataRepository;
 
 /**
  * Parses commands as specified in the different feature files.

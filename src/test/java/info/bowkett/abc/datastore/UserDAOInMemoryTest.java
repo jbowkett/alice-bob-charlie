@@ -1,4 +1,4 @@
-package info.bowkett.abc.dao;
+package info.bowkett.abc.datastore;
 
 import info.bowkett.abc.domain.User;
 import org.junit.Test;
