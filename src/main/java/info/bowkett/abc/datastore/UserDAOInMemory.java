@@ -19,7 +19,7 @@ public class UserDAOInMemory implements UserDAO {
    * @return the User (never null)
    */
   @Override
-  public User get(String userName) {
+  public User read(String userName) {
     userNameToUserMap.putIfAbsent(userName, new User(userName));
     return userNameToUserMap.get(userName);
   }

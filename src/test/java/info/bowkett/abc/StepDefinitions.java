@@ -47,7 +47,7 @@ public class StepDefinitions {
   @Then("^\"(.*?)\" timeline contains the post \"(.*?)\"$")
   public void timeline_contains_the_post(String posessive, String post) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final User user = userRepo.get(userName);
+    final User user = userRepo.read(userName);
     final Timeline posts = timelineRepo.get(user);
     final List<Post> extractedPosts = new ArrayList<>();
     posts.forEachRecentFirst(extractedPosts::add);
@@ -57,7 +57,7 @@ public class StepDefinitions {
   @Then("^\"(.*?)\" timeline contains (\\d+) posts$")
   public void timeline_contains_posts(String posessive, int expectedCount) throws Throwable {
     final String userName = stripPosessive(posessive);
-    final User user = userRepo.get(userName);
+    final User user = userRepo.read(userName);
     final Timeline timeline = timelineRepo.get(user);
     final List<Post> extractedPosts = new ArrayList<>();
     timeline.forEachRecentFirst(extractedPosts::add);
@@ -83,7 +83,7 @@ public class StepDefinitions {
   public void follows(String userNameDoingFollowing, String userNameBeingFollowed) throws Throwable {
     final String follow = follow(userNameDoingFollowing, userNameBeingFollowed);
     consoleSpy.submit(follow);
-    final User userDoingFollowing = userRepo.get(userNameDoingFollowing);
+    final User userDoingFollowing = userRepo.read(userNameDoingFollowing);
     final Set<User> usersBeingFollowed = followRepo.getUsersFollowedBy(userDoingFollowing);
     assertTrue(usersBeingFollowed.stream().anyMatch(u -> u.getName().equals(userNameBeingFollowed)));
   }

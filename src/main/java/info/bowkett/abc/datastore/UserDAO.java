@@ -12,5 +12,5 @@ public interface UserDAO {
    * @param userName
    * @return the User (never null)
    */
-  public User get(String userName);
+  public User read(String userName);
 }

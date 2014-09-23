@@ -24,7 +24,7 @@ public class DataRepositoryImpl implements DataRepository {
 
   @Override
   public User findUser(String userName) {
-    return userDAO.get(userName);
+    return userDAO.read(userName);
   }
 
   @Override

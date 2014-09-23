@@ -25,18 +25,18 @@ public class UserDAOInMemoryTest {
 
 
   /**
-   * Method: get(String userName)
+   * Method: read(String userName)
    */
   @Test
   public void testGetAlwaysReturnsAUserEvenWhenEmpty() throws Exception {
-    assertNotNull(inMemoryUserRepository.get("neverSeenUserName"));
+    assertNotNull(inMemoryUserRepository.read("neverSeenUserName"));
   }
 
   @Test
   public void testAlwaysReturnTheSameUserInstanceForTheSameUsername(){
     final String userName = "testUser";
-    final User userFirstTime = inMemoryUserRepository.get(userName);
-    final User userSecondTime = inMemoryUserRepository.get(userName);
+    final User userFirstTime = inMemoryUserRepository.read(userName);
+    final User userSecondTime = inMemoryUserRepository.read(userName);
     assertEquals(userFirstTime, userSecondTime);
   }
 
