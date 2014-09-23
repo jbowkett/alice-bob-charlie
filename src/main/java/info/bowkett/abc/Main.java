@@ -23,7 +23,7 @@ public class Main {
    * @param argsAreIgnored
    */
   public static void main(String [] argsAreIgnored){
-    final UserRepository userRepo = new InMemoryUserRepository();
+    final UserDAO userRepo = new InMemoryUserDAO();
     final TimelineDAO timelineRepo = new TimelineDAOInMemory();
     final FollowDAO followRepo = new FollowDAOInMemory();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);

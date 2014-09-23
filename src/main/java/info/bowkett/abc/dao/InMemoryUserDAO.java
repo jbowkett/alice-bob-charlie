@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentMap;
  * names)
  * Created by jbowkett on 29/08/2014.
  */
-public class InMemoryUserRepository implements UserRepository {
+public class InMemoryUserDAO implements UserDAO {
   private final ConcurrentMap<String, User> userNameToUserMap = new ConcurrentHashMap<>();
 
   /**

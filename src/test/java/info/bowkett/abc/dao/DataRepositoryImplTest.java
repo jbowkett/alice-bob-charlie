@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
  */
 public class DataRepositoryImplTest {
 
-  private UserRepository userRepository;
+  private UserDAO userDAO;
   private TimelineDAO timelineDAO;
   private FollowDAO followDAO;
   private DataRepositoryImpl dataRepository;
@@ -36,11 +36,11 @@ public class DataRepositoryImplTest {
 
   @Before
   public void before() throws Exception {
-    userRepository = mock(UserRepository.class);
+    userDAO = mock(UserDAO.class);
     timelineDAO = mock(TimelineDAO.class);
     followDAO = mock(FollowDAO.class);
     dataRepository = new DataRepositoryImpl(
-        userRepository,
+        userDAO,
         timelineDAO,
         followDAO
     );

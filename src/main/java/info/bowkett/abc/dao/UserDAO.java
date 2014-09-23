@@ -6,7 +6,7 @@ import info.bowkett.abc.domain.User;
  * Repository for storing and retrieving users
  * Created by jbowkett on 29/08/2014.
  */
-public interface UserRepository {
+public interface UserDAO {
   /**
    * Gets or creates the user with the specified name
    * @param userName

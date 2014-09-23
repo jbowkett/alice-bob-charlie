@@ -10,21 +10,21 @@ import java.util.stream.Stream;
  */
 public class DataRepositoryImpl implements DataRepository {
 
-  private final UserRepository userRepository;
+  private final UserDAO userDAO;
   private final TimelineDAO timelineDAO;
   private final FollowDAO followDAO;
 
-  public DataRepositoryImpl(UserRepository userRepository,
+  public DataRepositoryImpl(UserDAO userDAO,
                             TimelineDAO timelineDAO,
                             FollowDAO followDAO) {
-    this.userRepository = userRepository;
+    this.userDAO = userDAO;
     this.timelineDAO = timelineDAO;
     this.followDAO = followDAO;
   }
 
   @Override
   public User getUser(String userName) {
-    return userRepository.get(userName);
+    return userDAO.get(userName);
   }
 
   @Override

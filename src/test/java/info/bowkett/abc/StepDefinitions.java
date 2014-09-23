@@ -25,10 +25,10 @@ public class StepDefinitions {
   private final TimelineDAO timelineRepo;
   private final Console consoleSpy;
   private final FollowDAO followRepo;
-  private UserRepository userRepo;
+  private UserDAO userRepo;
 
   public StepDefinitions() {
-    this.userRepo = new InMemoryUserRepository();
+    this.userRepo = new InMemoryUserDAO();
     timelineRepo = new TimelineDAOInMemory();
     followRepo = new FollowDAOInMemory();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);

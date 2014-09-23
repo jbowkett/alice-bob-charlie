@@ -14,13 +14,13 @@ import static org.junit.Assert.assertNotNull;
  * @version 1.0
  * @since <pre>Sep 15, 2014</pre>
  */
-public class InMemoryUserRepositoryTest {
+public class InMemoryUserDAOTest {
 
-  private InMemoryUserRepository inMemoryUserRepository;
+  private InMemoryUserDAO inMemoryUserRepository;
 
   @Before
   public void before() throws Exception {
-    inMemoryUserRepository = new InMemoryUserRepository();
+    inMemoryUserRepository = new InMemoryUserDAO();
   }
 
 
