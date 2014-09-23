@@ -33,7 +33,7 @@ public class CommandFactory {
     if (quitCommand(shellCommand)){
       return new QuitCommand();
     }
-    else if (viewCommand(words)) {
+    else if (readCommand(words)) {
       return new ReadCommand(userName, dataRepository);
     }
     else if (wallCommand(words)) {
@@ -55,7 +55,7 @@ public class CommandFactory {
     return shellCommand.equals("quit");
   }
 
-  private boolean viewCommand(String[] words) {
+  private boolean readCommand(String[] words) {
     return words.length == 1;
   }
 
