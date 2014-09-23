@@ -33,7 +33,7 @@ public class DataRepositoryImpl implements DataRepository {
   }
 
   @Override
-  public Timeline getTimeline(User user) {
+  public Timeline findTimeline(User user) {
     return timelineDAO.get(user);
   }
 

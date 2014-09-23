@@ -21,7 +21,7 @@ public class ReadCommand implements Command {
   @Override
   public void execute(Console console) {
     final User user = dataRepository.findUser(userName);
-    final Timeline timeline = dataRepository.getTimeline(user);
+    final Timeline timeline = dataRepository.findTimeline(user);
     timeline.forEachRecentFirst(post -> {
       console
           .print(post.getText())

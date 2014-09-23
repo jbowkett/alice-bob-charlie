@@ -12,7 +12,7 @@ public interface DataRepository {
 
   void addFollowing(User userDoingFollowing, User userToFollow);
 
-  Timeline getTimeline(User user);
+  Timeline findTimeline(User user);
 
   Wall getWall(User user);
 }
