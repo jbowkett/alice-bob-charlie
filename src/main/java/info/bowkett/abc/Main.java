@@ -24,7 +24,7 @@ public class Main {
    */
   public static void main(String [] argsAreIgnored){
     final UserRepository userRepo = new InMemoryUserRepository();
-    final TimelineRepository timelineRepo = new InMemoryTimelineRepository();
+    final TimelineDAO timelineRepo = new InMemoryTimelineDAO();
     final FollowDAO followRepo = new FollowDAOInMemory();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);
     final CommandFactory commandFactory = new CommandFactory(dataRepo);

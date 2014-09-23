@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 public class DataRepositoryImplTest {
 
   private UserRepository userRepository;
-  private TimelineRepository timelineRepository;
+  private TimelineDAO timelineDAO;
   private FollowDAO followDAO;
   private DataRepositoryImpl dataRepository;
   private User alice;
@@ -37,11 +37,11 @@ public class DataRepositoryImplTest {
   @Before
   public void before() throws Exception {
     userRepository = mock(UserRepository.class);
-    timelineRepository = mock(TimelineRepository.class);
+    timelineDAO = mock(TimelineDAO.class);
     followDAO = mock(FollowDAO.class);
     dataRepository = new DataRepositoryImpl(
         userRepository,
-        timelineRepository,
+        timelineDAO,
         followDAO
     );
     alice = mock(User.class,"alice");
@@ -51,8 +51,8 @@ public class DataRepositoryImplTest {
     // could use mocks here, but we are starting to disappear into deep mocking
     aliceTimeline = new Timeline();
     bobTimeline = new Timeline();
-    when(timelineRepository.get(alice)).thenReturn(aliceTimeline);
-    when(timelineRepository.get(bob)).thenReturn(bobTimeline);
+    when(timelineDAO.get(alice)).thenReturn(aliceTimeline);
+    when(timelineDAO.get(bob)).thenReturn(bobTimeline);
   }
 
 

@@ -11,14 +11,14 @@ import java.util.stream.Stream;
 public class DataRepositoryImpl implements DataRepository {
 
   private final UserRepository userRepository;
-  private final TimelineRepository timelineRepository;
+  private final TimelineDAO timelineDAO;
   private final FollowDAO followDAO;
 
   public DataRepositoryImpl(UserRepository userRepository,
-                            TimelineRepository timelineRepository,
+                            TimelineDAO timelineDAO,
                             FollowDAO followDAO) {
     this.userRepository = userRepository;
-    this.timelineRepository = timelineRepository;
+    this.timelineDAO = timelineDAO;
     this.followDAO = followDAO;
   }
 
@@ -34,14 +34,14 @@ public class DataRepositoryImpl implements DataRepository {
 
   @Override
   public Timeline getTimeline(User user) {
-    return timelineRepository.get(user);
+    return timelineDAO.get(user);
   }
 
   @Override
   public Wall getWall(User user) {
     final Set<User> usersBeingFollowed = followDAO.getUsersFollowedBy(user);
-    final Stream<Timeline> timelinesForOthers = usersBeingFollowed.stream().map(timelineRepository::get);
-    final Timeline userTimeline = timelineRepository.get(user);
+    final Stream<Timeline> timelinesForOthers = usersBeingFollowed.stream().map(timelineDAO::get);
+    final Timeline userTimeline = timelineDAO.get(user);
     final OrderedPosts wallPosts = new OrderedPosts();
     timelinesForOthers.forEach(timeline -> timeline.forEachRecentFirst(wallPosts::add));
     userTimeline.forEachRecentFirst(wallPosts::add);

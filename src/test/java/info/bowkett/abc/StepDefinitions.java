@@ -22,14 +22,14 @@ import static org.mockito.Mockito.*;
  */
 public class StepDefinitions {
 
-  private final TimelineRepository timelineRepo;
+  private final TimelineDAO timelineRepo;
   private final Console consoleSpy;
   private final FollowDAO followRepo;
   private UserRepository userRepo;
 
   public StepDefinitions() {
     this.userRepo = new InMemoryUserRepository();
-    timelineRepo = new InMemoryTimelineRepository();
+    timelineRepo = new InMemoryTimelineDAO();
     followRepo = new FollowDAOInMemory();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);
     final CommandFactory commandFactory = new CommandFactory(dataRepo);
