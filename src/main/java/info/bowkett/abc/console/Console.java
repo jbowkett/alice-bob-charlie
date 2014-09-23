@@ -5,9 +5,7 @@ import info.bowkett.abc.commands.Command;
 import java.util.Scanner;
 
 /**
- * Class representing console output.
- * Could also have handled console input, but did not want this class to
- * require to maintain any state
+ * Class representing console input and output.
  * Created by jbowkett on 30/08/2014.
  */
 public class Console {

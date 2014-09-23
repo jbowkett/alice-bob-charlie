@@ -6,7 +6,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * User repo wrapping a concurrent map (chosen for the more imperative method
+ * User DAO wrapping a concurrent map (chosen for the more imperative method
  * names)
  * Created by jbowkett on 29/08/2014.
  */

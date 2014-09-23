@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 /**
- * Package private utility model class for DRYing up ordered lists of posts
+ * Utility model class used for DRYing up ordered lists of posts
  * Created by jbowkett on 1/09/2014.
  */
 public class OrderedPosts {

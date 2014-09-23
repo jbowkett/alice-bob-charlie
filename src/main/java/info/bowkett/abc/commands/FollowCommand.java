@@ -5,7 +5,7 @@ import info.bowkett.abc.domain.User;
 import info.bowkett.abc.console.Console;
 
 /**
- * Follow/subscribe command issued in the shell
+ * Follow command issued in the shell
  * Created by jbowkett on 31/08/2014.
  */
 public class FollowCommand implements Command{

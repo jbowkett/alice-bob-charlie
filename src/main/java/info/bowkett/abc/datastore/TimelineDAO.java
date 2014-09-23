@@ -5,7 +5,7 @@ import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
 
 /**
- * Timeline repository for storage and retrieval of user timelines.
+ * Timeline DAO for retrieval of user timelines.
  * Created by jbowkett on 30/08/2014.
  */
 public interface TimelineDAO {

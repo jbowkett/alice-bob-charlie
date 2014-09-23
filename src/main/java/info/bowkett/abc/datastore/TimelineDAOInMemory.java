@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Timeline repository wrapping a concurrent map
+ * Timeline DAO wrapping a concurrent map
  *
  * Created by jbowkett on 30/08/2014.
  */

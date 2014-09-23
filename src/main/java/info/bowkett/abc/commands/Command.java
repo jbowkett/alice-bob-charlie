@@ -4,7 +4,7 @@ package info.bowkett.abc.commands;
 import info.bowkett.abc.console.Console;
 
 /**
- * Command interface for commands issued in the shell
+ * Command interface for commands issued in the console
  * Created by jbowkett on 29/08/2014.
  */
 public interface Command {

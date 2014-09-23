@@ -6,6 +6,8 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 /**
+ * Implementation of the DataRepository interface
+ *
  * Created by jbowkett on 10/09/2014.
  */
 public class DataRepositoryImpl implements DataRepository {

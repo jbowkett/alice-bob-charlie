@@ -5,9 +5,7 @@ import info.bowkett.abc.domain.User;
 import java.util.Set;
 
 /**
- * Repository for storing and retrieving who a user has subscribed/followed.
- * Tempted to refactor this to be named SubscriptionRepository, but decided to
- * keep the language ubiquitous with the problem domain.
+ * DAO for storing and retrieving who a user has followed.
  * Created by jbowkett on 31/08/2014.
  */
 public interface FollowDAO {

@@ -9,7 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Following repository based on a concurrent map.
+ * Following DAO based on a concurrent map.
  *
  * Created by jbowkett on 31/08/2014.
  */
@@ -31,6 +31,9 @@ public class FollowDAOInMemory implements FollowDAO {
     return subscriptions.users();
   }
 
+  /**
+   * Inner class to model a user and the users they follow
+   */
   private class Subscriptions {
     private final Set<User> users = new HashSet<>();
 
