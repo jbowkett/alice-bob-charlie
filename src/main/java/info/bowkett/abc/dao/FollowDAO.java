@@ -10,7 +10,7 @@ import java.util.Set;
  * keep the language ubiquitous with the problem domain.
  * Created by jbowkett on 31/08/2014.
  */
-public interface FollowRepository {
+public interface FollowDAO {
   /**
    * registers `userDoingFollowing` to now follow `userToFollow`
    * @param userDoingFollowing

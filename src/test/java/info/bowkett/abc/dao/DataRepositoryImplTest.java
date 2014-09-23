@@ -24,7 +24,7 @@ public class DataRepositoryImplTest {
 
   private UserRepository userRepository;
   private TimelineRepository timelineRepository;
-  private FollowRepository followRepository;
+  private FollowDAO followDAO;
   private DataRepositoryImpl dataRepository;
   private User alice;
   private User bob;
@@ -38,11 +38,11 @@ public class DataRepositoryImplTest {
   public void before() throws Exception {
     userRepository = mock(UserRepository.class);
     timelineRepository = mock(TimelineRepository.class);
-    followRepository = mock(FollowRepository.class);
+    followDAO = mock(FollowDAO.class);
     dataRepository = new DataRepositoryImpl(
         userRepository,
         timelineRepository,
-        followRepository
+        followDAO
     );
     alice = mock(User.class,"alice");
     bob = mock(User.class, "bob");
@@ -101,6 +101,6 @@ public class DataRepositoryImplTest {
   private void given_AliceFollowsBob() {
     final HashSet<User> whoFollowing = new HashSet<>();
     whoFollowing.add(bob);
-    when(followRepository.getUsersFollowedBy(alice)).thenReturn(whoFollowing);
+    when(followDAO.getUsersFollowedBy(alice)).thenReturn(whoFollowing);
   }
 }

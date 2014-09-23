@@ -24,13 +24,13 @@ public class StepDefinitions {
 
   private final TimelineRepository timelineRepo;
   private final Console consoleSpy;
-  private final FollowRepository followRepo;
+  private final FollowDAO followRepo;
   private UserRepository userRepo;
 
   public StepDefinitions() {
     this.userRepo = new InMemoryUserRepository();
     timelineRepo = new InMemoryTimelineRepository();
-    followRepo = new InMemoryFollowRepository();
+    followRepo = new InMemoryFollowDAO();
     final DataRepository dataRepo = new DataRepositoryImpl(userRepo, timelineRepo, followRepo);
     final CommandFactory commandFactory = new CommandFactory(dataRepo);
     final Console console = new Console(new Timeformat(), commandFactory);

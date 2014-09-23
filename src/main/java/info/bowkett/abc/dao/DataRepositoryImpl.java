@@ -12,14 +12,14 @@ public class DataRepositoryImpl implements DataRepository {
 
   private final UserRepository userRepository;
   private final TimelineRepository timelineRepository;
-  private final FollowRepository followRepository;
+  private final FollowDAO followDAO;
 
   public DataRepositoryImpl(UserRepository userRepository,
                             TimelineRepository timelineRepository,
-                            FollowRepository followRepository) {
+                            FollowDAO followDAO) {
     this.userRepository = userRepository;
     this.timelineRepository = timelineRepository;
-    this.followRepository = followRepository;
+    this.followDAO = followDAO;
   }
 
   @Override
@@ -29,7 +29,7 @@ public class DataRepositoryImpl implements DataRepository {
 
   @Override
   public void addFollowing(User userDoingFollowing, User userToFollow) {
-    followRepository.addFollowing(userDoingFollowing, userToFollow);
+    followDAO.addFollowing(userDoingFollowing, userToFollow);
   }
 
   @Override
@@ -39,7 +39,7 @@ public class DataRepositoryImpl implements DataRepository {
 
   @Override
   public Wall getWall(User user) {
-    final Set<User> usersBeingFollowed = followRepository.getUsersFollowedBy(user);
+    final Set<User> usersBeingFollowed = followDAO.getUsersFollowedBy(user);
     final Stream<Timeline> timelinesForOthers = usersBeingFollowed.stream().map(timelineRepository::get);
     final Timeline userTimeline = timelineRepository.get(user);
     final OrderedPosts wallPosts = new OrderedPosts();
