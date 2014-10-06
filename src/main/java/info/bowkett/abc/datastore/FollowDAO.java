@@ -1,15 +1,14 @@
-package info.bowkett.abc.dal;
+package info.bowkett.abc.datastore;
 
-import info.bowkett.abc.domain.Subscriptions;
 import info.bowkett.abc.domain.User;
 
+import java.util.Set;
+
 /**
- * Repository for storing and retrieving who a user has subscribed/followed.
- * Tempted to refactor this to be named SubscriptionRepository, but decided to
- * keep the language ubiquitous with the problem domain.
+ * DAO for storing and retrieving who a user has followed.
  * Created by jbowkett on 31/08/2014.
  */
-public interface FollowRepository {
+public interface FollowDAO {
   /**
    * registers `userDoingFollowing` to now follow `userToFollow`
    * @param userDoingFollowing
@@ -22,5 +21,5 @@ public interface FollowRepository {
    * @param userDoingFollowing
    * @return a Subscription for the user, which may be empty, but is never null
    */
-  public Subscriptions getSubscriptionsFor(User userDoingFollowing);
+  public Set<User> getUsersFollowedBy(User userDoingFollowing);
 }

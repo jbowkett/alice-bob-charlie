@@ -1,4 +1,4 @@
-package info.bowkett.abc.dal;
+package info.bowkett.abc.datastore;
 
 import info.bowkett.abc.domain.User;
 
@@ -6,11 +6,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * User repo wrapping a concurrent map (chosen for the more imperative method
+ * User DAO wrapping a concurrent map (chosen for the more imperative method
  * names)
  * Created by jbowkett on 29/08/2014.
  */
-public class InMemoryUserRepository implements UserRepository {
+public class UserDAOInMemory implements UserDAO {
   private final ConcurrentMap<String, User> userNameToUserMap = new ConcurrentHashMap<>();
 
   /**
@@ -19,7 +19,7 @@ public class InMemoryUserRepository implements UserRepository {
    * @return the User (never null)
    */
   @Override
-  public User get(String userName) {
+  public User read(String userName) {
     userNameToUserMap.putIfAbsent(userName, new User(userName));
     return userNameToUserMap.get(userName);
   }

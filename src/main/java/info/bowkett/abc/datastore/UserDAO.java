@@ -1,16 +1,16 @@
-package info.bowkett.abc.dal;
+package info.bowkett.abc.datastore;
 
 import info.bowkett.abc.domain.User;
 
 /**
- * Repository for storing and retrieving users
+ * DAO for retrieving users
  * Created by jbowkett on 29/08/2014.
  */
-public interface UserRepository {
+public interface UserDAO {
   /**
    * Gets or creates the user with the specified name
    * @param userName
    * @return the User (never null)
    */
-  public User get(String userName);
+  public User read(String userName);
 }

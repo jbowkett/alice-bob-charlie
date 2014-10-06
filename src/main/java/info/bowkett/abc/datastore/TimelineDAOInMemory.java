@@ -1,4 +1,4 @@
-package info.bowkett.abc.dal;
+package info.bowkett.abc.datastore;
 
 import info.bowkett.abc.domain.Timeline;
 import info.bowkett.abc.domain.User;
@@ -7,11 +7,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Timeline repository wrapping a concurrent map
+ * Timeline DAO wrapping a concurrent map
  *
  * Created by jbowkett on 30/08/2014.
  */
-public class InMemoryTimelineRepository implements TimelineRepository {
+public class TimelineDAOInMemory implements TimelineDAO {
   private final ConcurrentMap<User, Timeline> timelines = new ConcurrentHashMap<>();
 
   /**
@@ -20,7 +20,7 @@ public class InMemoryTimelineRepository implements TimelineRepository {
    * @return a timeline (never null)
    */
   @Override
-  public Timeline get(User user) {
+  public Timeline read(User user) {
     timelines.putIfAbsent(user, new Timeline());
     return timelines.get(user);
   }

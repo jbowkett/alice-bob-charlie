@@ -21,11 +21,4 @@ public class Timeline {
     timeline.add(post);
   }
 
-  public int size() {
-    return timeline.size();
-  }
-
-  public boolean anyMatch(Predicate<? super Post> predicate){
-    return timeline.anyMatch(predicate);
-  }
 }

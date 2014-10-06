@@ -1,6 +1,7 @@
-package info.bowkett.abc.shell;
+package info.bowkett.abc.console;
 
 import info.bowkett.abc.commands.*;
+import info.bowkett.abc.datastore.DataRepository;
 
 /**
  * Parses commands as specified in the different feature files.
@@ -8,40 +9,53 @@ import info.bowkett.abc.commands.*;
  *
  * Created by jbowkett on 27/08/2014.
  */
-public class CommandParser {
+public class CommandFactory {
 
   private static final String FOLLOWS = "follows";
   private static final String POST = "->";
   private static final String WALL = "wall";
+  private final DataRepository dataRepository;
+
+  public CommandFactory(DataRepository dataRepository) {
+    this.dataRepository = dataRepository;
+  }
+
 
   /**
    * @param shellCommand the line given at the shell prompt
    * @return a command instance denoting what should be done along with
    * appropriate information extracted from shellCommand
    */
-  public Command submit(String shellCommand) {
+  public Command getCommand(String shellCommand) {
     final String[] words = shellCommand.split(" ");
     final String userName = words[0].trim();
 
-    if (viewCommand(words)) {
-      return new ViewCommand(userName);
+    if (quitCommand(shellCommand)){
+      return new QuitCommand();
+    }
+    else if (readCommand(words)) {
+      return new ReadCommand(userName, dataRepository);
     }
     else if (wallCommand(words)) {
-      return new WallCommand(userName);
+      return new WallCommand(userName, dataRepository);
     }
     else if (followCommand(words)) {
-      return new FollowCommand(userName, words[2]);
+      return new FollowCommand(userName, words[2], dataRepository);
     }
     else if (postCommand(words)) {
       final String[] postParts = shellCommand.split("->");
-      return new PostCommand(userName, postParts[1].trim());
+      return new PostCommand(userName, postParts[1].trim(), dataRepository);
     }
     else {
       throw new IllegalArgumentException(shellCommand);
     }
   }
 
-  private boolean viewCommand(String[] words) {
+  private boolean quitCommand(String shellCommand) {
+    return shellCommand.equals("quit");
+  }
+
+  private boolean readCommand(String[] words) {
     return words.length == 1;
   }
 
